@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"/>
+<body id="loginBody">
+<th:block th:include="~{fragments/header}"/>
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Patient</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Dentist</label>
+        <div class="login-form">
+            <form th:action="@{/patient/register}" method="post">
+            <div class="sign-in-htm">
+                <div class="group">
+                    <label for="firstName" class="label">First Name</label>
+                    <input id="firstName" type="text" class="input" name="firstName">
+                </div>
+                <div class="group">
+                    <label for="lastName" class="label">Last Name</label>
+                    <input id="lastName" type="text" class="input" name="lastName">
+                </div>
+
+                <div class="group">
+                    <label for="password" class="label">Password</label>
+                    <input id="password" type="password" class="input" data-type="password" name="password">
+                </div>
+                <div class="group">
+                    <label for="confirmPassword" class="label">Confirm Password</label>
+                    <input id="confirmPassword" type="password" class="input" data-type="password" name="confirmPassword">
+                </div>
+                <div class="group">
+                    <label for="email" class="label">Email Address</label>
+                    <input id="email" type="text" class="input" name="email">
+                </div>
+                <div class="group">
+                    <label for="phoneNumber" class="label">Phone Number</label>
+                    <input id="phoneNumber" type="text" class="input" name="phoneNumber">
+                </div>
+                <div class="group">
+                    <label for="age" class="label">Age</label>
+                    <input id="age" type="number" class="input" name="age">
+                </div>
+                <div id="gender" class="btn-toggle gender group">
+                    <input id="maleGender" type="button" name="gender" class="btn btn-default active" value="Male">
+                    <input id="femaleGender" type="button" name="gender" class="btn btn-primary" value="Female">
+                </div>
+                <div class="group">
+                    <input type="submit" class="button" value="Sign Up">
+                </div>
+            </div>
+            </form>
+            <form th:action="@{/dentist/register}" method="post">
+            <div class="sign-up-htm">
+                <div class="group">
+                    <label for="firstNameDentist" class="label">First Name</label>
+                    <input id="firstNameDentist" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="lastNameDentist" class="label">Last Name</label>
+                    <input id="lastNameDentist" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="passwordDentist" class="label">Password</label>
+                    <input id="passwordDentist" type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                    <label for="confirmPasswordDentist" class="label">Confirm Password</label>
+                    <input id="confirmPasswordDentist" type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                    <label for="emailDentist" class="label">Email Address</label>
+                    <input id="emailDentist" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="ageDentist" class="label">Age</label>
+                    <input id="ageDentist" type="number" class="input">
+                </div>
+                <div class="group">
+                    <label for="qualification" class="label">Qualification</label>
+                    <input id="qualification" type="text" class="input">
+                </div>
+                <div id="genderDentist" class="btn-toggle gender group">
+                    <input id="maleGenderDentist" type="button" name="gender" class="btn btn-default active " value="Male">
+                    <input id="femaleGenderDentist" type="button" name="gender" class="btn btn-primary " value="Female">
+                </div>
+
+                <div class="group">
+                    <input type="submit" class="button" value="Sign Up">
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:include="~{fragments/script}"/>
+<th:block th:include="~{fragments/footer}"/>
+</body>
+</html>
