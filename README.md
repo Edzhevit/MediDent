@@ -45,7 +45,7 @@ Your Web application should use the following technologies, frameworks and devel
 #### Good usability (easy to use UI).
 #### Supporting of all modern Web browsers.
 #### Use caching where appropriate.
-####Use a source control system by choice, e.g. GitHub, BitBucket.
+#### Use a source control system by choice, e.g. GitHub, BitBucket.
 * Submit a link to your public source code repository.
 ### Public Project Defense
 Each student will have to deliver a public defense of its work in front of a trainer jury. 
