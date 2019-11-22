@@ -3,7 +3,6 @@ package softuni.medident.web.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import softuni.medident.data.models.Gender;
 
 @Getter
 @Setter
@@ -17,5 +16,5 @@ public class PatientRegisterModel {
     private String email;
     private String phoneNumber;
     private Integer age;
-    private Gender gender;
+    private String gender;
 }

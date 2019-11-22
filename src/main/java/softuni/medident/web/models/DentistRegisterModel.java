@@ -17,5 +17,5 @@ public class DentistRegisterModel {
     private String email;
     private Integer age;
     private String qualification;
-    private Gender gender;
+    private String gender;
 }
