@@ -7,6 +7,17 @@
     font-weight: 100;
 }
 
+@media (min-width: 1050px) {
+    .navbar-expand-lg .navbar-collapse {
+        display: flex!important;
+        flex-basis: auto;
+    }
+
+}
+#navbarSupportedContent{
+    padding-left: 55px;
+}
+
 #mainNav {
     font-size: 1.3rem;
 }
@@ -46,7 +57,7 @@ footer {
     width: 100%;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
     #mainElements h1 {
         font-size: 3rem;
     }
@@ -150,17 +161,18 @@ a{color:inherit;text-decoration:none}
     background:rgba(255,255,255,.1);
 }
 
-.gender {
-    text-align: center;
+#labelMaleGender, #labelFemaleGender, #dentistLabelM, #dentistLabelF{
+    display: inline;
+    padding-right: 20px;
 }
 
 #maleGender, #maleGenderDentist {
-    width: 49%;
+    width: 33%;
     border-radius: 25px;
 }
 
 #femaleGender, #femaleGenderDentist {
-    width: 49%;
+    width: 33%;
     border-radius: 25px;
 }
 .login-form .group input[data-type="password"]{
