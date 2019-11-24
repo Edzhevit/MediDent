@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @NoArgsConstructor
 public class Address extends BaseEntity {
 
+    @Column(name = "number", nullable = false)
+    private Integer number;
     @Column(name = "street", nullable = false)
     private String street;
     @Column(name = "city", nullable = false)

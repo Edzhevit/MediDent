@@ -14,8 +14,15 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Dentist extends User{
+public class Dentist extends BaseEntity{
 
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
+    @Column(name = "age", nullable = false)
+    private Integer age;
+    @Column(name = "gender", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     @Column(name = "qualification", nullable = false)
     private String qualification;
     @OneToOne(targetEntity = Address.class)
