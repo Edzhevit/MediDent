@@ -6,15 +6,20 @@
 <th:block th:include="~{fragments/header}"/>
 <div class="login-wrap">
     <div class="login-html">
-        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Patient</label>
-        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Dentist</label>
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
         <div class="login-form">
-            <form th:action="@{/patient/register}" method="post">
-                <div class="sign-in-htm">
+            <form th:action="@{/register}" th:object="${patient}" method="post">
+                <div class="sign-up-htm">
                     <div class="group">
                         <label for="firstName" class="label">First Name</label>
                         <input id="firstName" type="text" class="input" name="firstName">
+                        <ul th:if="${#fields.hasErrors('*')}">
+                            <li th:each="err : ${#fields.errors('firstName')}" th:text="${patient.firstName}">
+                                <h3>Error</h3>
+                            </li>
+                        </ul>
                     </div>
+
                     <div class="group">
                         <label for="lastName" class="label">Last Name</label>
                         <input id="lastName" type="text" class="input" name="lastName">
@@ -53,48 +58,7 @@
                     </div>
                 </div>
             </form>
-            <form th:action="@{/dentist/register}" method="post">
-                <div class="sign-up-htm">
-                    <div class="group">
-                        <label for="firstNameDentist" class="label">First Name</label>
-                        <input id="firstNameDentist" type="text" class="input" name="firstName">
-                    </div>
-                    <div class="group">
-                        <label for="lastNameDentist" class="label">Last Name</label>
-                        <input id="lastNameDentist" type="text" class="input" name="lastName">
-                    </div>
-                    <div class="group">
-                        <label for="passwordDentist" class="label">Password</label>
-                        <input id="passwordDentist" type="password" class="input" data-type="password" name="password">
-                    </div>
-                    <div class="group">
-                        <label for="confirmPasswordDentist" class="label">Confirm Password</label>
-                        <input id="confirmPasswordDentist" type="password" class="input" data-type="password" name="confirmPassword">
-                    </div>
-                    <div class="group">
-                        <label for="emailDentist" class="label">Email Address</label>
-                        <input id="emailDentist" type="text" class="input" name="email">
-                    </div>
-                    <div class="group">
-                        <label for="ageDentist" class="label">Age</label>
-                        <input id="ageDentist" type="number" class="input" name="age">
-                    </div>
-                    <div class="group">
-                        <label for="qualification" class="label">Qualification</label>
-                        <input id="qualification" type="text" class="input" name="qualification">
-                    </div>
-                    <div class="group">
-                        <label id="dentistLabelM" class="label gender" for="maleGenderDentist">Male</label><input
-                            id="maleGenderDentist" type="radio" name="gender" value="Male">
-                        <label id="dentistLabelF" class="label gender" for="femaleGenderDentist">Female</label><input
-                            id="femaleGenderDentist" type="radio" name="gender" value="Female">
-                    </div>
 
-                    <div class="group">
-                        <input type="submit" class="button" value="Sign Up">
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 </div>
