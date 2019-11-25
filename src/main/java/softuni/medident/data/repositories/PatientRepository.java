@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface PatientRepository extends JpaRepository<Patient, String> {
 
     Optional<Patient> findByEmailAndPassword(String email, String password);
+
+    Boolean existsByEmail(String email);
 }

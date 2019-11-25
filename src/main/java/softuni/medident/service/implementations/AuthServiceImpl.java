@@ -9,6 +9,7 @@ import softuni.medident.service.models.LoginUserServiceModel;
 import softuni.medident.service.models.PatientRegisterServiceModel;
 import softuni.medident.service.services.AuthService;
 import softuni.medident.service.services.HashService;
+import softuni.medident.service.services.ValidatorService;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -16,18 +17,22 @@ public class AuthServiceImpl implements AuthService {
     private final PatientRepository patientRepository;
     private final ModelMapper modelMapper;
     private final HashService hashService;
+    private final ValidatorService validatorService;
 
     @Autowired
-    public AuthServiceImpl(PatientRepository patientRepository, ModelMapper modelMapper, HashService hashService) {
+    public AuthServiceImpl(PatientRepository patientRepository, ModelMapper modelMapper, HashService hashService, ValidatorService validatorService) {
         this.patientRepository = patientRepository;
         this.modelMapper = modelMapper;
         this.hashService = hashService;
+        this.validatorService = validatorService;
     }
 
     @Override
-    public void registerPatient(PatientRegisterServiceModel patientModel) {
+    public void registerPatient(PatientRegisterServiceModel patientModel) throws Exception {
 
-        //TODO Validate user
+        if (!this.validatorService.isValid(patientModel)){
+            throw new Exception("Not a valid user");
+        }
 
         Patient patient = this.modelMapper.map(patientModel, Patient.class);
         patient.setPassword(this.hashService.hash(patient.getPassword()));

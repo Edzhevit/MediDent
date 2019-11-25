@@ -5,17 +5,36 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import softuni.medident.data.models.Gender;
 
+import javax.validation.constraints.*;
+
 @Getter
 @Setter
 @NoArgsConstructor
 public class PatientRegisterServiceModel {
 
+    @NotEmpty
+    @Size(min = 2)
     private String firstName;
+
+    @NotEmpty
+    @Size(min = 2)
     private String lastName;
+
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
     private String password;
+
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
     private String confirmPassword;
+
+    @Email
     private String email;
+
+    @NotEmpty
+    @Size(min = 10, max = 10)
     private String phoneNumber;
+
+    @Min(value = 18)
     private Integer age;
+
     private Gender gender;
 }

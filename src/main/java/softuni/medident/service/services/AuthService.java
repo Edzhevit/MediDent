@@ -5,7 +5,7 @@ import softuni.medident.service.models.PatientRegisterServiceModel;
 
 public interface AuthService {
 
-    void registerPatient (PatientRegisterServiceModel patient);
+    void registerPatient (PatientRegisterServiceModel patient) throws Exception;
 
     LoginUserServiceModel login(PatientRegisterServiceModel patient) throws Exception;
 
