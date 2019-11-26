@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="~{fragments/head}"/>
+<body>
+<header>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg
+         navbar-light m-1 fixed-top">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a href="/home" title="home" class="btn btn-info m-3">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" title="contact" class="btn btn-info m-3">(+359) 888 88 88 88</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<!--Google map-->
+<div id="map-container-google-2" class="z-depth-1-half map-container" >
+    <iframe src="https://maps.google.com/maps?q=softwareuniversity&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+            style="border:0" allowfullscreen></iframe>
+
+</div>
+<!--Google Maps-->
+</body>
+</html>
