@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="~{fragments/head}"/>
+<body id="indexBody">
+<th:block th:include="~{fragments/user-header}"/>
+<main>
+    <div id="all-jobs-container" class="container">
+        <div class="row mb-4 d-flex justify-content-around">
+            <th:block th:each="job : ${jobs}">
+
+                <div id="job" class="col-md-3 d-flex flex-column text-center">
+
+                    <h2 th:text="${job.name}"></h2>
+                    <h4 th:text="${job.location}"></h4>
+                    <p th:text="${job.salary}"></p>
+                    <p th:text="${job.description}"></p>
+                    <button class="btn btn-success" value="Apply">Apply</button>
+
+<!--                    <h:link outcome="job-details?id=#{job.id}" styleClass="btn btn-info" value="Details"/>-->
+<!--                    <h:link outcome="delete-job?id=#{job.id}" styleClass="btn btn-danger" value="Delete"/>-->
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"/>
+<th:block th:include="~{fragments/script}"/>
+</body>
+
+</html>
