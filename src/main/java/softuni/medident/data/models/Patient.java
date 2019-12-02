@@ -47,4 +47,8 @@ public class Patient extends BaseEntity {
     @OneToMany(targetEntity = PatientHistory.class, mappedBy = "patient")
     private List<PatientHistory> patientHistories;
 
+    @Column(name = "roles", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
 }

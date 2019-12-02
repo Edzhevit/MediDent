@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import softuni.medident.service.models.LoginUserServiceModel;
 import softuni.medident.service.models.PatientRegisterServiceModel;
 import softuni.medident.service.services.AuthService;
@@ -16,6 +17,7 @@ import softuni.medident.web.models.PatientRegisterModel;
 import javax.servlet.http.HttpSession;
 
 @Controller
+@RequestMapping("/users")
 public class AuthController {
 
     private final AuthService authService;
@@ -30,28 +32,28 @@ public class AuthController {
 
     @GetMapping("/register")
     public String getRegisterForm() {
-        return "/register.html";
+        return "auth/register.html";
     }
 
     @GetMapping("/login")
     public String getLoginForm() {
-        return "/login.html";
+        return "auth/login.html";
     }
 
     @PostMapping("/register")
     public String register(@ModelAttribute PatientRegisterModel patient, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "redirect:/register";
+            return "auth/register.html";
         }
 
         PatientRegisterServiceModel patientServiceModel = this.modelMapper.map(patient, PatientRegisterServiceModel.class);
         try {
             this.authService.registerPatient(patientServiceModel);
         } catch (Exception e) {
-            return "redirect:/register";
+            return "redirect:/users/register";
         }
 
-        return "redirect:/login";
+        return "redirect:/users/login";
     }
 
 
@@ -64,8 +66,14 @@ public class AuthController {
             session.setAttribute("user", loginUserServiceModel);
             return "redirect:/home";
         } catch (Exception ex) {
-            return "redirect:/login";
+            return "redirect:/users/login";
         }
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
 
 }
