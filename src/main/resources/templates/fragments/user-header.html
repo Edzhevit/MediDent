@@ -3,7 +3,7 @@
         <nav id="mainNav" class="navbar navbar-expand-lg
          navbar-light m-0 py-0 fixed-top">
             <a class="navbar-brand" href="/">
-                <img id="logo" src="./img/output-onlinepngtools.png" alt=""/>
+                <img id="logo" src="../img/output-onlinepngtools.png" alt=""/>
                 MEDIDENT</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,12 +27,13 @@
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdown"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Careers
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdown">
-                                <a class="dropdown-item" href="/careers">All Careers</a>
-                                <a class="dropdown-item" href="/create-job">Create</a>
+                                <a class="dropdown-item" href="/careers/all">All Careers</a>
+                                <a class="dropdown-item" href="/careers/create-job">Create</a>
                             </div>
                         </div>
 
@@ -43,7 +44,9 @@
 
                 </ul>
                 <div class="buttons px-2 m-2">
-                    <a href="/logout" title="logout" class="btn btn-outline-info m-2 my-sm-0">Logout</a>
+                    <form th:action="@{/logout}" th:method="post">
+                        <button class="btn btn-outline-info m-2 my-sm-0" type="submit">Logout</button>
+                    </form>
                 </div>
             </div>
         </nav>

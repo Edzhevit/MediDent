@@ -318,7 +318,20 @@ a {
     margin-top: 10px;
     padding-top: 10px;
     background: rgba(255, 255, 255, 0.5);
+    height: 300px;
 }
+
+#job form {
+    margin-bottom: 7px;
+    display: grid;
+}
+
+#job-detail{
+    border: 2px solid gray;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
 
 
 

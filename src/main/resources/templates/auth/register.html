@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body id="registerBody">
+<th:block th:include="~{fragments/header}"/>
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
+        <div class="login-form">
+            <form id="signupForm" th:action="@{/users/register}" method="post">
+                <div class="sign-up-htm">
+                    <div class="group">
+                        <label for="firstName" class="label">First Name</label>
+                        <input id="firstName" type="text" class="input" name="firstName" required minlength="2">
+                    </div>
+
+                    <div class="group">
+                        <label for="lastName" class="label">Last Name</label>
+                        <input id="lastName" type="text" class="input" name="lastName" required minlength="2">
+                    </div>
+
+                    <div class="group">
+                        <label for="password" class="label">Password</label>
+                        <input id="password" type="password" class="input" data-type="password" name="password" required
+                               pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+                               title="Must be inimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:">
+                    </div>
+                    <div class="group">
+                        <label for="confirmPassword" class="label">Confirm Password</label>
+                        <input id="confirmPassword" type="password" class="input" data-type="password" name="confirmPassword" required
+                               pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+                               title="Must be inimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:">
+                    </div>
+                    <div class="group">
+                        <label for="email" class="label">Email Address</label>
+                        <input id="email" type="email" class="input" name="email" required>
+                    </div>
+                    <div class="group">
+                        <label for="phoneNumber" class="label">Phone Number</label>
+                        <input id="phoneNumber" type="number" class="input" name="phoneNumber"
+                               title="Phone Number format is 08XX-XX-XX-XX" required>
+                    </div>
+                    <div class="group">
+                        <label for="age" class="label">Age</label>
+                        <input id="age" type="number" class="input" name="age" min="18" max="100" required>
+                    </div>
+                    <div class=" group">
+                        <label id="labelMaleGender" class="label gender" for="maleGender">Male</label><input
+                            id="maleGender" type="radio" name="gender" class="" value="Male">
+                        <label id="labelFemaleGender" class="label gender" for="femaleGender">Female</label><input
+                            id="femaleGender" type="radio" name="gender" class="" value="Female">
+                    </div>
+
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign Up">
+                    </div>
+                    <div class="group">
+                        <p>If you already have an account <a href="/users/login">Login</a></p>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<th:block th:include="~{fragments/script}"/>
+<th:block th:include="~{fragments/footer}"/>
+</body>
+</html>
