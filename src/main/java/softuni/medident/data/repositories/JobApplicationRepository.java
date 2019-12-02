@@ -10,4 +10,6 @@ import java.util.List;
 public interface JobApplicationRepository extends JpaRepository<JobApplication, String> {
 
     List<JobApplication> findAll();
+
+    JobApplication getById(String id);
 }

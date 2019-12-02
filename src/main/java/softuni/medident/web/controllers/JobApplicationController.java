@@ -3,10 +3,10 @@ package softuni.medident.web.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import softuni.medident.data.models.JobApplication;
+import softuni.medident.exception.JobNotFoundException;
 import softuni.medident.service.models.JobApplicationServiceModel;
 import softuni.medident.service.services.JobApplicationService;
 import softuni.medident.web.models.JobApplicationViewModel;
@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
+@RequestMapping("/careers")
 public class JobApplicationController {
 
     private final JobApplicationService jobApplicationService;
@@ -26,7 +27,7 @@ public class JobApplicationController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/careers")
+    @GetMapping("/all")
     public ModelAndView getJobs(ModelAndView modelAndView){
 
         List<JobApplicationViewModel> jobs = this.jobApplicationService.getAllJobs()
@@ -34,23 +35,42 @@ public class JobApplicationController {
                 .map(j -> this.modelMapper.map(j, JobApplicationViewModel.class))
                 .collect(Collectors.toList());
         modelAndView.addObject("jobs", jobs);
-        modelAndView.setViewName("all-jobs.html");
+        modelAndView.setViewName("careers/all-jobs.html");
         return modelAndView;
     }
 
     @GetMapping("/create-job")
     public String getCreateCareersForm(){
-        return "/create-job.html";
+        return "careers/create-job.html";
     }
 
     @PostMapping("/create-job")
     public String create(@ModelAttribute JobApplicationViewModel viewModel){
         JobApplicationServiceModel serviceModel = this.modelMapper.map(viewModel, JobApplicationServiceModel.class);
         this.jobApplicationService.createJob(serviceModel);
-        return "redirect:/careers";
+        return "redirect:/careers/all";
     }
 
+    @GetMapping("/details/{id}")
+    public ModelAndView getJobDetails(@PathVariable String id, ModelAndView modelAndView) throws JobNotFoundException {
+        JobApplicationServiceModel serviceModel = jobApplicationService.getById(id);
+        JobApplicationViewModel viewModel = this.modelMapper.map(serviceModel, JobApplicationViewModel.class);
+        modelAndView.addObject("job", viewModel);
+        modelAndView.setViewName("careers/job-details.html");
+        return modelAndView;
+    }
 
+    @PostMapping("/delete/{id}")
+    public String deleteJob(@PathVariable String id) {
+        this.jobApplicationService.removeJob(id);
+        return "redirect:/careers/all";
+    }
 
+    @ExceptionHandler(JobNotFoundException.class)
+    public ModelAndView handleException(JobNotFoundException exception){
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("message", exception.getMessage());
+        return modelAndView;
+    }
 
 }

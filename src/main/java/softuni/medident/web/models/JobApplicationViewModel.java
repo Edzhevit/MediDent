@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class JobApplicationViewModel {
 
+    private String id;
     private String name;
     private String location;
     private String description;

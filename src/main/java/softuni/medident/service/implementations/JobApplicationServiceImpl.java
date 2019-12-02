@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softuni.medident.data.models.JobApplication;
 import softuni.medident.data.repositories.JobApplicationRepository;
+import softuni.medident.exception.JobNotFoundException;
 import softuni.medident.service.models.JobApplicationServiceModel;
 import softuni.medident.service.services.JobApplicationService;
 
@@ -35,5 +36,23 @@ public class JobApplicationServiceImpl implements JobApplicationService {
                 .stream()
                 .map(job -> this.modelMapper.map(job, JobApplicationServiceModel.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public JobApplicationServiceModel getById(String id) throws JobNotFoundException {
+        JobApplication jobApplication = this.jobApplicationRepository.getById(id);
+
+        if (jobApplication == null){
+            throw new JobNotFoundException("Job application with such name does not exist");
+        }
+
+        return this.modelMapper.map(jobApplication, JobApplicationServiceModel.class);
+    }
+
+    @Override
+    public void removeJob(String id) {
+        JobApplication jobApplication = this.jobApplicationRepository.getById(id);
+
+        this.jobApplicationRepository.delete(jobApplication);
     }
 }
