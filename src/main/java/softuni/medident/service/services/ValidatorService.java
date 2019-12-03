@@ -1,9 +1,9 @@
 package softuni.medident.service.services;
 
-import softuni.medident.service.models.PatientRegisterServiceModel;
+import softuni.medident.service.models.UserRegisterServiceModel;
 
 public interface ValidatorService {
 
-    Boolean isValid(PatientRegisterServiceModel object);
+    Boolean isValid(UserRegisterServiceModel object);
 
 }

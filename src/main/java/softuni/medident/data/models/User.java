@@ -4,28 +4,51 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
+import java.util.List;
 
-@MappedSuperclass
+@Entity
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
-public abstract class User extends BaseEntity {
+public class User extends BaseEntity {
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
+
     @Column(name = "last_name", nullable = false)
     private String lastName;
+
     @Column(name = "password", nullable = false)
     private String password;
+
     @Column(name = "email", nullable = false)
     private String email;
+
     @Column(name = "age", nullable = false)
     private Integer age;
+
     @Column(name = "gender", nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
+
+    @OneToOne(targetEntity = Address.class)
+    private Address address;
+
+    @ManyToOne(targetEntity = Dentist.class)
+    private Dentist dentist;
+
+    @OneToMany(targetEntity = PatientHistory.class, mappedBy = "user")
+    private List<PatientHistory> patientHistories;
+
+    @Column(name = "roles", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
 }

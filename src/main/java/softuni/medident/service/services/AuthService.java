@@ -1,13 +1,13 @@
 package softuni.medident.service.services;
 
 import softuni.medident.service.models.LoginUserServiceModel;
-import softuni.medident.service.models.PatientRegisterServiceModel;
+import softuni.medident.service.models.UserRegisterServiceModel;
 
 public interface AuthService {
 
-    void registerPatient (PatientRegisterServiceModel patient) throws Exception;
+    void registerUser(UserRegisterServiceModel patient) throws Exception;
 
-    LoginUserServiceModel login(PatientRegisterServiceModel patient) throws Exception;
+    LoginUserServiceModel login(UserRegisterServiceModel patient) throws Exception;
 
 
 }

@@ -5,8 +5,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import softuni.medident.data.models.Gender;
-import softuni.medident.service.models.PatientRegisterServiceModel;
-import softuni.medident.web.models.PatientRegisterModel;
+import softuni.medident.service.models.UserRegisterServiceModel;
+import softuni.medident.web.models.UserRegisterModel;
 
 @Configuration
 public class ModelMapperConfig {
@@ -21,10 +21,10 @@ public class ModelMapperConfig {
     private static void initMapper(ModelMapper mapper) {
         Converter<String, Gender> stringGenderConverter = ctx -> Gender.valueOf(ctx.getSource().toUpperCase());
 
-        mapper.createTypeMap(PatientRegisterModel.class, PatientRegisterServiceModel.class)
+        mapper.createTypeMap(UserRegisterModel.class, UserRegisterServiceModel.class)
                 .addMappings(map -> map.using(stringGenderConverter)
-                        .map(PatientRegisterModel::getGender,
-                                PatientRegisterServiceModel::setGender));
+                        .map(UserRegisterModel::getGender,
+                                UserRegisterServiceModel::setGender));
     }
 
     @Bean

@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import softuni.medident.service.models.LoginUserServiceModel;
-import softuni.medident.service.models.PatientRegisterServiceModel;
+import softuni.medident.service.models.UserRegisterServiceModel;
 import softuni.medident.service.services.AuthService;
 import softuni.medident.web.models.LoginUserModel;
-import softuni.medident.web.models.PatientRegisterModel;
+import softuni.medident.web.models.UserRegisterModel;
 
 import javax.servlet.http.HttpSession;
 
@@ -41,14 +41,14 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute PatientRegisterModel patient, BindingResult bindingResult) {
+    public String register(@ModelAttribute UserRegisterModel user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "auth/register.html";
         }
 
-        PatientRegisterServiceModel patientServiceModel = this.modelMapper.map(patient, PatientRegisterServiceModel.class);
+        UserRegisterServiceModel userServiceModel = this.modelMapper.map(user, UserRegisterServiceModel.class);
         try {
-            this.authService.registerPatient(patientServiceModel);
+            this.authService.registerUser(userServiceModel);
         } catch (Exception e) {
             return "redirect:/users/register";
         }
@@ -58,8 +58,8 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public String loginPatient(@ModelAttribute LoginUserModel user, HttpSession session) {
-        PatientRegisterServiceModel serviceModel = this.modelMapper.map(user, PatientRegisterServiceModel.class);
+    public String login(@ModelAttribute LoginUserModel user, HttpSession session) {
+        UserRegisterServiceModel serviceModel = this.modelMapper.map(user, UserRegisterServiceModel.class);
 
         try {
             LoginUserServiceModel loginUserServiceModel = this.authService.login(serviceModel);
@@ -73,7 +73,7 @@ public class AuthController {
     @PostMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return "redirect:/";
+        return "home/index.html";
     }
 
 }

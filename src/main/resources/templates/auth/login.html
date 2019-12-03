@@ -14,26 +14,26 @@
             <form th:action="@{/users/login}" method="post">
                 <div class="sign-up-htm">
                     <div class="group">
-                        <label for="emailDentist" class="label">Email Address</label>
-                        <input id="emailDentist" type="text" class="input" name="email">
+                        <label for="email" class="label">Email Address</label>
+                        <input id="email" type="text" class="input" name="email">
                     </div>
                     <div class="group">
-                        <label for="passwordDentist" class="label">Password</label>
-                        <input id="passwordDentist" type="password" class="input" data-type="password" name="password">
+                        <label for="password" class="label">Password</label>
+                        <input id="password" type="password" class="input" data-type="password" name="password">
                     </div>
 
                     <div class="group">
                         <input type="submit" class="button" value="Log In">
                     </div>
                     <div class="group">
-                        <p>If you don't have an account <a href="/users/register">Sign Up</a></p>
+                        <p>If you don't have an account <a href="/users/register"><strong>Sign Up</strong></a></p>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<th:block th:include="~{fragments/script}"/>
 <th:block th:include="~{fragments/footer}"/>
+<th:block th:include="~{fragments/script}"/>
 </body>
 </html>

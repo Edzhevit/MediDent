@@ -1,5 +1,6 @@
 package softuni.medident.data.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class JobApplication extends BaseEntity {
 
     @Column(name = "name", nullable = false)
