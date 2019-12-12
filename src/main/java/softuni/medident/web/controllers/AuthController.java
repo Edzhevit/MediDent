@@ -4,10 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import softuni.medident.exception.UserNotFoundException;
 import softuni.medident.service.models.LoginUserServiceModel;
 import softuni.medident.service.models.UserRegisterServiceModel;
 import softuni.medident.service.services.AuthService;
@@ -74,6 +73,13 @@ public class AuthController {
     public String logout(HttpSession session){
         session.invalidate();
         return "home/index.html";
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ModelAndView handleException(UserNotFoundException exception){
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("message", exception.getMessage());
+        return modelAndView;
     }
 
 }

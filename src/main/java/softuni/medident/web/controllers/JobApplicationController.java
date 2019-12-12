@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/careers")
 public class JobApplicationController {
 
+    public final static String JOB_DETAILS_VIEW_NAME = "careers/job-details.html";
+
     private final JobApplicationService jobApplicationService;
     private final ModelMapper modelMapper;
 
@@ -38,13 +40,13 @@ public class JobApplicationController {
         return modelAndView;
     }
 
-    @GetMapping("/create-job")
+    @GetMapping("/create")
     public String getCreateCareersForm(){
         return "careers/create-job.html";
     }
 
-    @PostMapping("/create-job")
-    public String create(@ModelAttribute JobApplicationViewModel viewModel){
+    @PostMapping("/create")
+    public String create(@ModelAttribute JobApplicationViewModel viewModel) throws JobNotFoundException {
         JobApplicationServiceModel serviceModel = this.modelMapper.map(viewModel, JobApplicationServiceModel.class);
         this.jobApplicationService.createJob(serviceModel);
         return "redirect:/careers/all";
@@ -55,12 +57,12 @@ public class JobApplicationController {
         JobApplicationServiceModel serviceModel = jobApplicationService.getById(id);
         JobApplicationViewModel viewModel = this.modelMapper.map(serviceModel, JobApplicationViewModel.class);
         modelAndView.addObject("job", viewModel);
-        modelAndView.setViewName("careers/job-details.html");
+        modelAndView.setViewName(JOB_DETAILS_VIEW_NAME);
         return modelAndView;
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteJob(@PathVariable String id) {
+    public String deleteJob(@PathVariable String id) throws JobNotFoundException {
         this.jobApplicationService.removeJob(id);
         return "redirect:/careers/all";
     }

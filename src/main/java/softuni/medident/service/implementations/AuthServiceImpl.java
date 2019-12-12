@@ -6,11 +6,12 @@ import org.springframework.stereotype.Service;
 import softuni.medident.data.models.User;
 import softuni.medident.data.models.Role;
 import softuni.medident.data.repositories.UserRepository;
+import softuni.medident.exception.UserNotFoundException;
 import softuni.medident.service.models.LoginUserServiceModel;
 import softuni.medident.service.models.UserRegisterServiceModel;
 import softuni.medident.service.services.AuthService;
 import softuni.medident.service.services.HashService;
-import softuni.medident.service.services.ValidatorService;
+import softuni.medident.service.services.AuthValidatorService;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -18,21 +19,21 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final HashService hashService;
-    private final ValidatorService validatorService;
+    private final AuthValidatorService authValidatorService;
 
     @Autowired
-    public AuthServiceImpl(UserRepository userRepository, ModelMapper modelMapper, HashService hashService, ValidatorService validatorService) {
+    public AuthServiceImpl(UserRepository userRepository, ModelMapper modelMapper, HashService hashService, AuthValidatorService authValidatorService) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.hashService = hashService;
-        this.validatorService = validatorService;
+        this.authValidatorService = authValidatorService;
     }
 
     @Override
     public void registerUser(UserRegisterServiceModel serviceModel) throws Exception {
 
-        if (!this.validatorService.isValid(serviceModel)){
-            throw new Exception("Not a valid user");
+        if (!this.authValidatorService.isValid(serviceModel)){
+            throw new UserNotFoundException("Not a valid user");
         }
 
         User user = this.modelMapper.map(serviceModel, User.class);
@@ -51,7 +52,7 @@ public class AuthServiceImpl implements AuthService {
         return this.userRepository
                 .findByEmailAndPassword(userServiceModel.getEmail(), hashPassword)
                 .map(user -> new LoginUserServiceModel(userServiceModel.getEmail()))
-                .orElseThrow(() -> new Exception("Invalid User"));
+                .orElseThrow(() -> new UserNotFoundException("Invalid User"));
 
     }
 }

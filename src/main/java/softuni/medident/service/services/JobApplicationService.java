@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface JobApplicationService {
 
-    void createJob(JobApplicationServiceModel serviceModel);
+    void createJob(JobApplicationServiceModel serviceModel) throws JobNotFoundException;
 
     List<JobApplicationServiceModel> getAllJobs();
 
     JobApplicationServiceModel getById(String id) throws JobNotFoundException;
 
-    void removeJob(String id);
+    void removeJob(String id) throws JobNotFoundException;
 }
