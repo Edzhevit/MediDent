@@ -17,6 +17,6 @@ public class Treatment extends BaseEntity{
     @Column(name = "price", nullable = false)
     private BigDecimal price;
     @Column(name = "treatment_type", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TreatmentType type;
+//    @Enumerated(EnumType.STRING)
+    private String type;
 }

@@ -6,4 +6,6 @@ import softuni.medident.data.models.Treatment;
 
 @Repository
 public interface TreatmentRepository extends JpaRepository<Treatment, String> {
+
+    Treatment getById(String id);
 }
