@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import softuni.medident.constants.Constants;
 import softuni.medident.data.models.Gender;
-import softuni.medident.data.models.Role;
 import softuni.medident.data.repositories.UserRepository;
 import softuni.medident.service.base.ServiceTestBase;
 import softuni.medident.service.models.UserRegisterServiceModel;
 import softuni.medident.service.services.AuthValidatorService;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,10 +26,10 @@ public class AuthValidatorServiceTest extends ServiceTestBase {
 
 
     @Test
-    void isValid_whenNameIsNull_ShouldReturnFalse(){
+    void isValid_whenUsernameIsNull_ShouldReturnFalse(){
         UserRegisterServiceModel user = new UserRegisterServiceModel (
-                null, Constants.DEFAULT_LAST_NAME, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD,
-                Constants.DEFAULT_EMAIL, Constants.DEFAULT_PHONE_NUMBER, Constants.DEFAULT_AGE, Gender.MALE, Role.USER);
+                null, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD,
+                Constants.DEFAULT_EMAIL, Constants.DEFAULT_PHONE_NUMBER, Constants.DEFAULT_AGE, Gender.MALE, new HashSet<>());
         boolean isValid = service.isValid(user);
         assertFalse(isValid);
     }
@@ -35,8 +37,8 @@ public class AuthValidatorServiceTest extends ServiceTestBase {
     @Test
     void isValid_whenPasswordDontMatch_ShouldReturnFalse(){
         UserRegisterServiceModel user = new UserRegisterServiceModel (
-                Constants.DEFAULT_NAME, Constants.DEFAULT_LAST_NAME, Constants.DEFAULT_PASSWORD, Constants.PASSWORD_NOT_MATCH,
-                Constants.DEFAULT_EMAIL, Constants.DEFAULT_PHONE_NUMBER, Constants.DEFAULT_AGE, Gender.MALE, Role.USER);
+                Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD, Constants.PASSWORD_NOT_MATCH,
+                Constants.DEFAULT_EMAIL, Constants.DEFAULT_PHONE_NUMBER, Constants.DEFAULT_AGE, Gender.MALE, new HashSet<>());
         boolean isValid = service.isValid(user);
         assertFalse(isValid);
     }
@@ -46,8 +48,8 @@ public class AuthValidatorServiceTest extends ServiceTestBase {
     void isValid_whenMailIsNull_ShouldReturnFalse(){
         String email = Constants.DEFAULT_EMAIL;
         UserRegisterServiceModel user = new UserRegisterServiceModel (
-                Constants.DEFAULT_NAME, Constants.DEFAULT_LAST_NAME, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD,
-                Constants.DEFAULT_EMAIL, Constants.DEFAULT_PHONE_NUMBER, Constants.DEFAULT_AGE, Gender.MALE, Role.USER);
+                Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD,
+                Constants.DEFAULT_EMAIL, Constants.DEFAULT_PHONE_NUMBER, Constants.DEFAULT_AGE, Gender.MALE, new HashSet<>());
 
         Mockito.when(repository.existsByEmail(email))
                 .thenReturn(true);
@@ -58,8 +60,8 @@ public class AuthValidatorServiceTest extends ServiceTestBase {
     @Test
     void isValid_whenAllIsValid_ShouldReturnTrue(){
         UserRegisterServiceModel user = new UserRegisterServiceModel (
-                Constants.DEFAULT_NAME, Constants.DEFAULT_LAST_NAME, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD,
-                Constants.DEFAULT_EMAIL, Constants.DEFAULT_PHONE_NUMBER, Constants.DEFAULT_AGE, null, Role.USER);
+                Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD,
+                Constants.DEFAULT_EMAIL, Constants.DEFAULT_PHONE_NUMBER, Constants.DEFAULT_AGE, null, new HashSet<>());
         boolean isValid = service.isValid(user);
         assertTrue(isValid);
     }

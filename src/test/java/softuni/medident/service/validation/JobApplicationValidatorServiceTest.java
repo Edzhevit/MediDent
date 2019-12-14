@@ -17,7 +17,7 @@ public class JobApplicationValidatorServiceTest extends ServiceTestBase {
 
     @Test
     void isValid_whenAllValid_ShouldReturnTrue(){
-        JobApplicationServiceModel serviceModel = new JobApplicationServiceModel(Constants.DEFAULT_ID, Constants.DEFAULT_NAME,
+        JobApplicationServiceModel serviceModel = new JobApplicationServiceModel(Constants.DEFAULT_ID, Constants.DEFAULT_USERNAME,
                 Constants.DEFAULT_LOCATION, Constants.DEFAULT_DESCRIPTION, Constants.DEFAULT_SALARY);
         boolean isValid = service.isValid(serviceModel);
         assertTrue(isValid);

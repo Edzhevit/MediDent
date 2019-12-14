@@ -40,7 +40,7 @@ public class JobApplicationServiceTest extends ServiceTestBase {
 
     @Test
     void createJob_whenInputIsValid_shouldCreateJob() throws JobNotFoundException {
-        JobApplicationServiceModel serviceModel = new JobApplicationServiceModel(Constants.DEFAULT_ID, Constants.DEFAULT_NAME,
+        JobApplicationServiceModel serviceModel = new JobApplicationServiceModel(Constants.DEFAULT_ID, Constants.DEFAULT_USERNAME,
                 Constants.DEFAULT_LOCATION, Constants.DEFAULT_DESCRIPTION, Constants.DEFAULT_SALARY);
 
         Mockito.when(validatorService.isValid(serviceModel))
@@ -58,7 +58,7 @@ public class JobApplicationServiceTest extends ServiceTestBase {
 
     @Test
     void createJob_whenInputIsNotValid_shouldThrow() {
-        JobApplicationServiceModel serviceModel = new JobApplicationServiceModel(null, Constants.DEFAULT_NAME,
+        JobApplicationServiceModel serviceModel = new JobApplicationServiceModel(null, Constants.DEFAULT_USERNAME,
                 Constants.DEFAULT_LOCATION, null, Constants.DEFAULT_SALARY);
 
         Mockito.when(validatorService.isValid(serviceModel))
@@ -109,7 +109,7 @@ public class JobApplicationServiceTest extends ServiceTestBase {
     @Test
     void remove_whenThereIsJob_shouldRemoveCorrectly() throws JobNotFoundException {
         String id = Constants.DEFAULT_ID;
-        JobApplication jobApplication = new JobApplication(Constants.DEFAULT_NAME,
+        JobApplication jobApplication = new JobApplication(Constants.DEFAULT_USERNAME,
                 Constants.DEFAULT_LOCATION, Constants.DEFAULT_DESCRIPTION, Constants.DEFAULT_SALARY);
 
         Mockito.when(repository.getById(id))
@@ -136,9 +136,9 @@ public class JobApplicationServiceTest extends ServiceTestBase {
 
     private List<JobApplication> getJobs(){
         List<JobApplication> jobs = new ArrayList<>();
-        JobApplication job = new JobApplication(Constants.DEFAULT_NAME, Constants.DEFAULT_LOCATION,
+        JobApplication job = new JobApplication(Constants.DEFAULT_USERNAME, Constants.DEFAULT_LOCATION,
                 Constants.DEFAULT_DESCRIPTION, Constants.DEFAULT_SALARY);
-        JobApplication job2 = new JobApplication(Constants.DEFAULT_NAME, Constants.DEFAULT_LOCATION,
+        JobApplication job2 = new JobApplication(Constants.DEFAULT_USERNAME, Constants.DEFAULT_LOCATION,
                 Constants.DEFAULT_DESCRIPTION, Constants.DEFAULT_SALARY);
         jobs.add(job);
         jobs.add(job2);
