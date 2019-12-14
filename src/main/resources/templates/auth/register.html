@@ -10,16 +10,11 @@
     <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
         <div class="login-form">
-            <form id="signupForm" th:action="@{/users/register}" method="post">
+            <form id="signupForm" th:action="@{/register}" method="post">
                 <div class="sign-up-htm">
                     <div class="group">
-                        <label for="firstName" class="label">First Name</label>
-                        <input id="firstName" type="text" class="input" name="firstName" required minlength="2">
-                    </div>
-
-                    <div class="group">
-                        <label for="lastName" class="label">Last Name</label>
-                        <input id="lastName" type="text" class="input" name="lastName" required minlength="2">
+                        <label for="username" class="label">Username</label>
+                        <input id="username" type="text" class="input" name="username" required minlength="2">
                     </div>
 
                     <div class="group">
@@ -58,7 +53,7 @@
                         <input type="submit" class="button" value="Sign Up">
                     </div>
                     <div class="group">
-                        <p>If you already have an account <a href="/users/login"><strong>Login</strong></a></p>
+                        <p>If you already have an account <a href="/login"><strong>Login</strong></a></p>
                     </div>
                 </div>
             </form>
