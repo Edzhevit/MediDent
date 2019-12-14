@@ -3,18 +3,17 @@ package softuni.medident.service.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import softuni.medident.data.models.Role;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class LoginUserServiceModel {
 
-    private String email;
+    private String username;
     private String password;
-    private Role role;
+//    private Role role;
 
-    public LoginUserServiceModel(String email) {
-        this.email = email;
+    public LoginUserServiceModel(String username) {
+        this.username = username;
     }
 }

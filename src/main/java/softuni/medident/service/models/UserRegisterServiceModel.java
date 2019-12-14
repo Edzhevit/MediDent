@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import softuni.medident.data.models.Gender;
-import softuni.medident.data.models.Role;
 
 import javax.validation.constraints.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,11 +17,7 @@ public class UserRegisterServiceModel {
 
     @NotEmpty
     @Size(min = 2)
-    private String firstName;
-
-    @NotEmpty
-    @Size(min = 2)
-    private String lastName;
+    private String username;
 
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
     private String password;
@@ -39,7 +35,8 @@ public class UserRegisterServiceModel {
     @Min(value = 18)
     private Integer age;
 
+    @NotNull
     private Gender gender;
 
-    private Role role;
+    private Set<RoleServiceModel> authorities;
 }
