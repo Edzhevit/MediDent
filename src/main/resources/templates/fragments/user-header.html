@@ -25,7 +25,7 @@
                         <a class="nav-link" href="/our-team">Our Team</a>
                     </li>
                     <li sec:authorize="hasAuthority('USER')" class="nav-item">
-                        <a class="nav-link" href="/treatments/all">All Treatments</a>
+                        <a class="nav-link" href="/treatments/all">Treatments</a>
                     </li>
                     <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                         <div class="dropdown">
@@ -39,7 +39,19 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <li sec:authorize="hasAuthority('USER')" class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdown"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Products
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown">
+                                <a class="dropdown-item" href="/products/all">All Products</a>
+                                <a class="dropdown-item" href="/products/my">My Products</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdown"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,7 +63,10 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <li sec:authorize="hasAuthority('USER')" class="nav-item">
+                        <a class="nav-link" href="/careers/all">Careers</a>
+                    </li>
+                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdown"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

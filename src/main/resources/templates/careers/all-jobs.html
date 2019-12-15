@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:include="~{fragments/head}"/>
 </head>
@@ -18,7 +19,7 @@
                     <form th:action="@{'/careers/details/' + ${job.id}}" th:method="get">
                         <button type="submit" class="btn btn-success" value="seeMore">See More</button>
                     </form>
-                    <form th:action="@{'/careers/delete/' + ${job.id}}" th:method="post">
+                    <form sec:authorize="hasAuthority('ADMIN')" th:action="@{'/careers/delete/' + ${job.id}}" th:method="post">
                         <button type="submit" class="btn btn-danger" value="delete">Delete</button>
                     </form>
 
