@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body id="indexBody">
+<th:block th:include="~{fragments/user-header}"/>
+<main>
+    <div id="all-jobs-container" class="container">
+        <div class="row mb-4 d-flex justify-content-around">
+            <th:block th:each="product : ${products}">
+                <div id="job" class="col-md-3 d-flex flex-column text-center">
+                    <h2 th:text="${product.brand}"></h2>
+                    <h4 th:text="${product.model}"></h4>
+                    <p th:text="${product.price} + 'lv'"></p>
+                    <img th:src="${product.imageUrl}" alt=""/>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"/>
+<th:block th:include="~{fragments/script}"/>
+</body>
+
+</html>

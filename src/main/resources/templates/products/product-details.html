@@ -7,16 +7,21 @@
 <body id="indexBody">
 <th:block th:include="~{fragments/user-header}"/>
 <main>
-    <div id="all-jobs-container" class="container">
-        <div class="row mb-4 d-flex justify-content-around">
-            <div id="job-detail" class="text-center bg-blur">
+    <div id="all-products" class="container">
+        <div id="productsDiv" class="row mb-4 d-flex justify-content-around">
+            <div id="product-detail" class="text-center bg-blur">
                 <h1>Product</h1>
+                <img th:src="${product.imageUrl}" alt=""/>
                 <div class="row">
-                    <div class="col-md-6">
-                        <h3 class="align-middle" th:text="${product.brand}"></h3>
-                        <h3 class="align-middle" th:text="${product.model}"></h3>
-                        <h3 class="align-middle" th:text="${product.price}"></h3>
-                        <img th:src="${product.imageUrl}" width="100px" alt=""/>
+                    <div class="col-md-12">
+                        <h3 class="align-middle bg-info" th:text="${product.brand}"></h3>
+                        <h3 class="align-middle bg-info" th:text="${product.model}"></h3>
+                        <h3 class="align-middle bg-info" th:text="${product.price} + ' lv'"></h3>
+                        <th:block th:if="${product.owned == false}">
+                        <form th:action="@{'/products/buy/' + ${product.id}}" th:method="post">
+                            <button id="buy" type="submit" class="btn btn-success" value="buy">Buy</button>
+                        </form>
+                        </th:block>
                     </div>
                 </div>
             </div>
@@ -26,5 +31,4 @@
 <th:block th:include="~{fragments/footer}"/>
 <th:block th:include="~{fragments/script}"/>
 </body>
-
 </html>
