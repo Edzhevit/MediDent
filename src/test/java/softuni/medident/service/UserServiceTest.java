@@ -44,7 +44,7 @@ public class UserServiceTest extends ServiceTestBase {
     }
 
     @Test
-    void registerUser_whenCreatingFirstUser_shouldBeAdmin() throws Exception {
+    void registerUser_whenCreatingFirstUser_shouldBeAdmin() throws Exception, UserNotFoundException {
         UserRegisterServiceModel serviceModel = getUserRegisterServiceModel();
 
         Mockito.when(validatorService.isValid(serviceModel))
