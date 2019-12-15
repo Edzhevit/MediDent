@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import softuni.medident.data.models.Gender;
+import softuni.medident.data.models.Role;
 
 import javax.validation.constraints.*;
 import java.util.Set;

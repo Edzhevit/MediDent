@@ -8,14 +8,12 @@ import org.springframework.stereotype.Service;
 import softuni.medident.data.models.User;
 import softuni.medident.data.repositories.UserRepository;
 import softuni.medident.exception.UserNotFoundException;
-import softuni.medident.service.models.LoginUserServiceModel;
 import softuni.medident.service.models.UserRegisterServiceModel;
 import softuni.medident.service.services.RoleService;
 import softuni.medident.service.services.UserService;
 import softuni.medident.service.services.HashService;
 import softuni.medident.service.services.AuthValidatorService;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Service
@@ -39,34 +37,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(UserRegisterServiceModel serviceModel) throws Exception {
+    public User register(UserRegisterServiceModel serviceModel) throws UserNotFoundException {
         if (!this.authValidatorService.isValid(serviceModel)){
             throw new UserNotFoundException("Not a valid user");
         }
 
         this.roleService.seedRolesInDb();
 
-        if (userRepository.count() < 1){
+        //TODO returns different instance of ROLE
+
+        if (userRepository.count() == 0){
             serviceModel.setAuthorities(this.roleService.findAllRoles());
         } else {
-            serviceModel.setAuthorities(new HashSet<>());
-            serviceModel.getAuthorities().add(this.roleService.findByAuthority("USER"));
+            serviceModel.setAuthorities(Set.of(this.roleService.findByAuthority("USER")));
         }
 
         User user = this.modelMapper.map(serviceModel, User.class);
         user.setPassword(this.hashService.hash(user.getPassword()));
-
         return this.userRepository.saveAndFlush(user);
-    }
-
-    @Override
-    public LoginUserServiceModel login(UserRegisterServiceModel userServiceModel) throws Exception {
-        String hashPassword = this.hashService.hash(userServiceModel.getPassword());
-        return this.userRepository
-                .findByUsernameAndPassword(userServiceModel.getUsername(), hashPassword)
-                .map(user -> new LoginUserServiceModel(userServiceModel.getEmail()))
-                .orElseThrow(() -> new UserNotFoundException("Invalid User"));
-
     }
 
     @Override
