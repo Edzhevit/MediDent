@@ -9,4 +9,6 @@ import softuni.medident.data.models.Product;
 public interface ProductRepository extends JpaRepository<Product, String> {
 
     Product getById(String id);
+
+    boolean existsByImageUrl(String imageUrl);
 }

@@ -1,11 +1,11 @@
 package softuni.medident.data.models;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,9 +13,11 @@ import java.util.Set;
 @Table(name = "users")
 @Getter
 @Setter
-@NoArgsConstructor
-public class User extends BaseEntity implements UserDetails
-{
+public class User extends BaseEntity implements UserDetails {
+
+    public User(){
+        authorities = new HashSet<>();
+    }
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -44,6 +46,12 @@ public class User extends BaseEntity implements UserDetails
 
     @OneToMany(targetEntity = PatientHistory.class, mappedBy = "user")
     private List<PatientHistory> patientHistories;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "users_products",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"))
+    private List<Product> products;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles",

@@ -15,4 +15,5 @@ public class ProductViewDetailsModel {
     private String model;
     private BigDecimal price;
     private String imageUrl;
+    private boolean isOwned;
 }

@@ -4,10 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -24,4 +23,6 @@ public class Product extends BaseEntity {
     private BigDecimal price;
     @Column(name = "image_url")
     private String imageUrl;
+    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
+    private List<User> users;
 }
