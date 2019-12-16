@@ -29,13 +29,6 @@ public class UserRegisterServiceModel {
     @Email
     private String email;
 
-    @NotEmpty
-    @Size(min = 10, max = 10)
-    private String phoneNumber;
-
-    @Min(value = 18)
-    private Integer age;
-
     @NotNull
     private Gender gender;
 

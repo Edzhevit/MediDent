@@ -1,6 +1,7 @@
 package softuni.medident.web.models;
 
 import lombok.*;
+import softuni.medident.service.models.base.BaseModel;
 
 import java.math.BigDecimal;
 
@@ -8,9 +9,8 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductViewDetailsModel {
+public class ProductViewDetailsModel extends BaseModel {
 
-    private String id;
     private String brand;
     private String model;
     private BigDecimal price;

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import softuni.medident.service.models.base.BaseModel;
 
 import java.math.BigDecimal;
 
@@ -11,9 +12,8 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobApplicationServiceModel {
+public class JobApplicationServiceModel extends BaseModel {
 
-    private String id;
     private String name;
     private String location;
     private String description;

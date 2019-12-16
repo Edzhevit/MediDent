@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import softuni.medident.data.models.TreatmentType;
+import softuni.medident.service.models.base.BaseModel;
 
 import java.math.BigDecimal;
 
@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TreatmentServiceModel {
+public class TreatmentServiceModel extends BaseModel {
 
-    private String id;
     private BigDecimal price;
     private String type;
+    private String description;
 }

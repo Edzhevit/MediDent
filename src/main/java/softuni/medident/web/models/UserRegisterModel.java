@@ -13,7 +13,5 @@ public class UserRegisterModel {
     private String password;
     private String confirmPassword;
     private String email;
-    private String phoneNumber;
-    private Integer age;
     private String gender;
 }

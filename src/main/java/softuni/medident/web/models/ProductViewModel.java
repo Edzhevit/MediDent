@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
+import softuni.medident.service.models.base.BaseModel;
 
 import java.math.BigDecimal;
 
@@ -12,9 +13,8 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductViewModel {
+public class ProductViewModel extends BaseModel {
 
-    private String id;
     private String brand;
     private String model;
     private BigDecimal price;

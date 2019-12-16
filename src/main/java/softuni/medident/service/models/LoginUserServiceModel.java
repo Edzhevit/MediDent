@@ -11,7 +11,6 @@ public class LoginUserServiceModel {
 
     private String username;
     private String password;
-//    private Role role;
 
     public LoginUserServiceModel(String username) {
         this.username = username;
