@@ -32,5 +32,7 @@ public class UserRegisterServiceModel {
     @NotNull
     private Gender gender;
 
-    private Set<RoleServiceModel> authorities;
+//    private String imageUrl;
+
+    private Set<Role> authorities;
 }

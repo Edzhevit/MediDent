@@ -18,7 +18,7 @@ public class PatientHistory extends BaseEntity {
     private Visit reason;
     @OneToOne
     private Treatment treatment;
-    @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 

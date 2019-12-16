@@ -23,5 +23,6 @@ public class UserProfileModel {
     private Address address;
     private Dentist dentist;
     private List<PatientHistory> patientHistories;
+//    private String imageUrl;
 
 }

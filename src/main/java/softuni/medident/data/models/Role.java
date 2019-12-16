@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import softuni.medident.data.models.base.BaseEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class Role extends BaseEntity implements GrantedAuthority {
 
+    @Column(name = "authority", nullable = false, unique = true)
     private String authority;
 
     @Override

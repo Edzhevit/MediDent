@@ -10,5 +10,5 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
     Product getById(String id);
 
-    boolean existsByImageUrl(String imageUrl);
+    Boolean existsByImageUrl(String imageUrl);
 }
