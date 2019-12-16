@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header>
     <div class="container">
         <nav id="mainNav" class="navbar navbar-expand-lg
@@ -24,10 +24,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/our-team">Our Team</a>
                     </li>
-                    <li sec:authorize="hasAuthority('USER')" class="nav-item">
-                        <a class="nav-link" href="/treatments/all">Treatments</a>
-                    </li>
-                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                    <li class="nav-item">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdown"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,11 +32,12 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdown">
                                 <a class="dropdown-item" href="/treatments/all">All Treatments</a>
-                                <a class="dropdown-item" href="/treatments/create">Create</a>
+                                <a sec:authorize="hasAuthority('ADMIN')" class="dropdown-item"
+                                   href="/treatments/create">Create</a>
                             </div>
                         </div>
                     </li>
-                    <li sec:authorize="hasAuthority('USER')" class="nav-item">
+                    <li class="nav-item">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdown"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,25 +46,12 @@
                             <div class="dropdown-menu" aria-labelledby="dropdown">
                                 <a class="dropdown-item" href="/products/all">All Products</a>
                                 <a class="dropdown-item" href="/products/my">My Products</a>
+                                <a sec:authorize="hasAuthority('ADMIN')" class="dropdown-item"
+                                   href="/products/create">Create</a>
                             </div>
                         </div>
                     </li>
-                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdown"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Products
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown">
-                                <a class="dropdown-item" href="/products/all">All Products</a>
-                                <a class="dropdown-item" href="/products/create">Create</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li sec:authorize="hasAuthority('USER')" class="nav-item">
-                        <a class="nav-link" href="/careers/all">Careers</a>
-                    </li>
-                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                    <li class="nav-item">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdown"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -74,7 +59,8 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdown">
                                 <a class="dropdown-item" href="/careers/all">All Careers</a>
-                                <a class="dropdown-item" href="/careers/create">Create</a>
+                                <a sec:authorize="hasAuthority('ADMIN')" class="dropdown-item"
+                                   href="/careers/create">Create</a>
                             </div>
                         </div>
                     </li>
@@ -83,11 +69,14 @@
                     </li>
 
                 </ul>
-                <div class="buttons px-2 m-2">
+
+                <div id="profile" class="buttons px-2 m-2">
+                    <a href="/profile" title="profile" class="btn btn-outline-info m-2 my-sm-0">Profile</a>
                     <form th:action="@{/logout}" th:method="post">
                         <button class="btn btn-outline-info m-2 my-sm-0" type="submit">Logout</button>
                     </form>
                 </div>
+
             </div>
         </nav>
     </div>
