@@ -61,7 +61,6 @@ public class UserServiceTest extends ServiceTestBase {
 
     private UserRegisterServiceModel getUserRegisterServiceModel(){
         return new UserRegisterServiceModel(Constants.DEFAULT_USERNAME,
-                Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_EMAIL, Constants.DEFAULT_PHONE_NUMBER,
-                Constants.DEFAULT_AGE, Gender.MALE, new HashSet<>());
+                Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_EMAIL, Gender.MALE, new HashSet<>());
     }
 }

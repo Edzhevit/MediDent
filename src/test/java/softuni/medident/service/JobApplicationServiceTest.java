@@ -40,7 +40,7 @@ public class JobApplicationServiceTest extends ServiceTestBase {
 
     @Test
     void createJob_whenInputIsValid_shouldCreateJob() throws JobNotFoundException {
-        JobApplicationServiceModel serviceModel = new JobApplicationServiceModel(Constants.DEFAULT_ID, Constants.DEFAULT_USERNAME,
+        JobApplicationServiceModel serviceModel = new JobApplicationServiceModel(Constants.DEFAULT_USERNAME,
                 Constants.DEFAULT_LOCATION, Constants.DEFAULT_DESCRIPTION, Constants.DEFAULT_SALARY);
 
         Mockito.when(validatorService.isValid(serviceModel))
@@ -58,7 +58,7 @@ public class JobApplicationServiceTest extends ServiceTestBase {
 
     @Test
     void createJob_whenInputIsNotValid_shouldThrow() {
-        JobApplicationServiceModel serviceModel = new JobApplicationServiceModel(null, Constants.DEFAULT_USERNAME,
+        JobApplicationServiceModel serviceModel = new JobApplicationServiceModel(Constants.DEFAULT_USERNAME,
                 Constants.DEFAULT_LOCATION, null, Constants.DEFAULT_SALARY);
 
         Mockito.when(validatorService.isValid(serviceModel))
