@@ -3,6 +3,7 @@ package softuni.medident.data.models;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
+import softuni.medident.data.models.base.BaseEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -28,14 +29,14 @@ public class User extends BaseEntity implements UserDetails {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "age", nullable = false)
+    @Column(name = "age")
     private Integer age;
 
     @Column(name = "gender", nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @OneToOne(targetEntity = Address.class)

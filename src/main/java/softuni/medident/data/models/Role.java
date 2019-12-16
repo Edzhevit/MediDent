@@ -3,6 +3,7 @@ package softuni.medident.data.models;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import softuni.medident.data.models.base.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

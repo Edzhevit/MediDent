@@ -3,6 +3,7 @@ package softuni.medident.data.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import softuni.medident.data.models.base.BaseEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Dentist extends BaseEntity{
+public class Dentist extends BaseEntity {
 
     @Column(name = "full_name", nullable = false)
     private String fullName;
