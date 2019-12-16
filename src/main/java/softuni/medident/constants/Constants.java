@@ -14,5 +14,6 @@ public class Constants {
     public final static String DEFAULT_LOCATION = "Sofia";
     public final static String DEFAULT_DESCRIPTION = "Valid Description";
     public final static BigDecimal DEFAULT_SALARY = BigDecimal.valueOf(2000);
+    public final static String DEFAULT_IMAGE_URL = "Valid image url";
 
 }

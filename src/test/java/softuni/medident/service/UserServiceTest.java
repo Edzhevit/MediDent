@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import softuni.medident.constants.Constants;
 import softuni.medident.data.models.Gender;
+import softuni.medident.data.models.Role;
 import softuni.medident.data.models.User;
 import softuni.medident.data.repositories.UserRepository;
 import softuni.medident.exception.UserNotFoundException;
@@ -61,6 +62,8 @@ public class UserServiceTest extends ServiceTestBase {
 
     private UserRegisterServiceModel getUserRegisterServiceModel(){
         return new UserRegisterServiceModel(Constants.DEFAULT_USERNAME,
-                Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_EMAIL, Gender.MALE, new HashSet<>());
+                Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_EMAIL, Gender.MALE,
+//                Constants.DEFAULT_IMAGE_URL,
+                new HashSet<>());
     }
 }
