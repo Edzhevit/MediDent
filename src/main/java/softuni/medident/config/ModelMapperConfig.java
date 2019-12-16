@@ -25,6 +25,7 @@ public class ModelMapperConfig {
                 .addMappings(map -> map.using(stringGenderConverter)
                         .map(UserRegisterModel::getGender,
                                 UserRegisterServiceModel::setGender));
+
     }
 
     @Bean
