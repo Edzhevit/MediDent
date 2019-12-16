@@ -13,7 +13,6 @@ import softuni.medident.service.models.ProductServiceModel;
 import softuni.medident.service.services.ProductService;
 import softuni.medident.service.services.ProductValidatorService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

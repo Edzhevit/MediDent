@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import softuni.medident.data.models.User;
 import softuni.medident.data.repositories.UserRepository;
 import softuni.medident.exception.UserNotFoundException;
+import softuni.medident.service.models.UserProfileServiceModel;
 import softuni.medident.service.models.UserRegisterServiceModel;
 import softuni.medident.service.services.RoleService;
 import softuni.medident.service.services.UserService;
@@ -56,6 +57,12 @@ public class UserServiceImpl implements UserService {
         user.setPassword(this.hashService.hash(user.getPassword()));
         return this.userRepository.saveAndFlush(user);
     }
+
+    //TODO
+
+//    public User getProfile(UserProfileServiceModel serviceModel) {
+//
+//    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

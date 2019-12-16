@@ -3,10 +3,8 @@ package softuni.medident.service.implementations;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import softuni.medident.data.models.Product;
 import softuni.medident.data.models.Treatment;
 import softuni.medident.data.repositories.TreatmentRepository;
-import softuni.medident.service.models.ProductServiceModel;
 import softuni.medident.service.models.TreatmentServiceModel;
 import softuni.medident.service.services.TreatmentService;
 

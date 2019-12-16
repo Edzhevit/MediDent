@@ -7,8 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import softuni.medident.exception.UserNotFoundException;
+import softuni.medident.service.models.UserProfileServiceModel;
 import softuni.medident.service.models.UserRegisterServiceModel;
 import softuni.medident.service.services.UserService;
+import softuni.medident.web.models.UserProfileModel;
 import softuni.medident.web.models.UserRegisterModel;
 
 @Controller
@@ -48,6 +50,13 @@ public class UserController {
         }
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/profile")
+    public ModelAndView getProfile(ModelAndView modelAndView, UserProfileModel user){
+        UserProfileServiceModel serviceModel = this.modelMapper.map(user, UserProfileServiceModel.class);
+        modelAndView.setViewName("user/profile.html");
+        return modelAndView;
     }
 
     @ExceptionHandler(UserNotFoundException.class)
