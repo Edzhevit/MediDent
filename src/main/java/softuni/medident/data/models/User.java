@@ -2,10 +2,13 @@ package softuni.medident.data.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.userdetails.UserDetails;
 import softuni.medident.data.models.base.BaseEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,17 +42,15 @@ public class User extends BaseEntity implements UserDetails {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-//    @Column(name = "image_url")
-//    private String imageUrl;
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @OneToOne(targetEntity = Address.class)
     private Address address;
 
-    @ManyToOne(targetEntity = Dentist.class)
-    private Dentist dentist;
-
-    @OneToMany(targetEntity = PatientHistory.class, mappedBy = "user")
-    private List<PatientHistory> patientHistories;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(targetEntity = Appointment.class, mappedBy = "user")
+    private List<Appointment> appointments;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "users_products",

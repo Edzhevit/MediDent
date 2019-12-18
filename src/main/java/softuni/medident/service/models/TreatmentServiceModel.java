@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class TreatmentServiceModel extends BaseModel {
 
-    private BigDecimal price;
     private String type;
+    private BigDecimal price;
     private String description;
 }

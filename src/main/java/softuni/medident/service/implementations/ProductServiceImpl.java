@@ -19,6 +19,9 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private final static String NO_SUCH_PRODUCT_MESSAGE = "There is no such product";
+    private final static String NO_SUCH_PRODUCT_USER = "There is no such user";
+
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
@@ -42,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void createProduct(ProductServiceModel serviceModel) throws ProductNotFoundException {
         if (!productValidatorService.isValid(serviceModel)){
-            throw new ProductNotFoundException("There is no such product");
+            throw new ProductNotFoundException(NO_SUCH_PRODUCT_MESSAGE);
         }
         Product product = this.modelMapper.map(serviceModel, Product.class);
         this.productRepository.saveAndFlush(product);
@@ -59,12 +62,12 @@ public class ProductServiceImpl implements ProductService {
     public void addToUserById(String id, String username) throws UserNotFoundException, ProductNotFoundException {
         User user = this.userRepository.findByUsername(username);
         if (user == null){
-            throw new UserNotFoundException("No such user");
+            throw new UserNotFoundException(NO_SUCH_PRODUCT_USER);
         }
 
         Product product = this.productRepository.getById(id);
         if (product == null){
-            throw new ProductNotFoundException("No such product");
+            throw new ProductNotFoundException(NO_SUCH_PRODUCT_MESSAGE);
         }
 
         boolean hasProduct = false;

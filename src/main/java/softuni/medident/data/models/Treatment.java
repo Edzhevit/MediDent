@@ -15,10 +15,10 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class Treatment extends BaseEntity {
 
+    @Column(name = "type", nullable = false)
+    private String type;
     @Column(name = "price", nullable = false)
     private BigDecimal price;
-    @Column(name = "treatment_type", nullable = false)
-    private String type;
     @Column(name = "description", nullable = false)
     private String description;
 }

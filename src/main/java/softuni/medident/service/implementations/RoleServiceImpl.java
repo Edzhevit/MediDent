@@ -3,6 +3,7 @@ package softuni.medident.service.implementations;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import softuni.medident.constants.RoleConstants;
 import softuni.medident.data.models.Role;
 import softuni.medident.data.repositories.RoleRepository;
 import softuni.medident.service.models.RoleServiceModel;
@@ -26,9 +27,9 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void seedRolesInDb() {
         if (this.roleRepository.count() == 0) {
-            this.roleRepository.saveAndFlush(new Role("ROOT"));
-            this.roleRepository.saveAndFlush(new Role("ADMIN"));
-            this.roleRepository.saveAndFlush(new Role("USER"));
+            this.roleRepository.saveAndFlush(new Role(RoleConstants.ROOT_ROLE));
+            this.roleRepository.saveAndFlush(new Role(RoleConstants.ADMIN_ROLE));
+            this.roleRepository.saveAndFlush(new Role(RoleConstants.USER_ROLE));
 
         }
     }
