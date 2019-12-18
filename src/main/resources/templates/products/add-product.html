@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body id="registerBody">
+<th:block th:include="~{fragments/user-header}"/>
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Add Product</label>
+        <div class="login-form">
+            <form id="signupForm" th:action="@{/products/create}" method="post" enctype="multipart/form-data">
+                <div class="sign-up-htm">
+                    <div class="group">
+                        <label for="brand" class="label">Brand</label>
+                        <input id="brand" type="text" class="input" name="brand" required minlength="2">
+                    </div>
+
+                    <div class="group">
+                        <label for="model" class="label">Model</label>
+                        <input id="model" type="text" class="input" name="model" required minlength="2">
+                    </div>
+                    <div class="group">
+                        <label for="price" class="label">Price</label>
+                        <input id="price" type="number" class="input" name="price" required>
+                    </div>
+                    <div class="group">
+                        <label for="image" class="label">Image</label>
+                        <input id="image" type="file" class="input" name="image"/>
+                    </div>
+
+                    <div class="group">
+                        <input type="submit" class="button" value="Create">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<th:block th:include="~{fragments/footer}"/>
+<th:block th:include="~{fragments/script}"/>
+</body>
+</html>

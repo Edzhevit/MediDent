@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body id="indexBody">
+<th:block th:include="~{fragments/user-header}"/>
+<main>
+    <div id="all-jobs-container" class="container">
+        <div class="row mb-4 d-flex justify-content-around">
+            <th:block th:each="dentist : ${dentists}">
+                <div id="job" class="col-md-3 d-flex flex-column text-center">
+                    <h2 th:text="${dentist.name}"></h2>
+                    <h4 th:text="${dentist.age}"></h4>
+                    <p th:text="${dentist.gender}"></p>
+                    <p th:text="${dentist.specialist}"></p>
+                    <img th:src="${dentist.imageUrl}" width="100px" alt=""/>
+<!--                    <form th:action="@{'/products/details/' + ${product.id}}" th:method="get">-->
+<!--                        <button type="submit" class="btn btn-success" value="seeMore">See More</button>-->
+<!--                    </form>-->
+<!--                    <form th:action="@{'/products/delete/' + ${product.id}}" th:method="post">-->
+<!--                        <button type="submit" class="btn btn-danger" value="delete">Delete</button>-->
+<!--                    </form>-->
+
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}"/>
+<th:block th:include="~{fragments/script}"/>
+</body>
+
+</html>
