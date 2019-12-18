@@ -10,7 +10,7 @@
     <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
         <div class="login-form">
-            <form id="signupForm" th:action="@{/register}" method="post">
+            <form id="signupForm" th:action="@{/register}" method="post" enctype="multipart/form-data">
                 <div class="sign-up-htm">
                     <div class="group">
                         <label for="username" class="label">Username</label>

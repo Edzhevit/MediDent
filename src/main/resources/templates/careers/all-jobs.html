@@ -15,7 +15,7 @@
                     <h2 th:text="${job.name}"></h2>
                     <h4 th:text="${job.location}"></h4>
                     <p th:text="${job.salary} + 'lv'"></p>
-                    <p th:text="${#strings.substring(job.description, 0, 15) + '...'}"></p>
+                    <p th:text="${job.description}"></p>
                     <form th:action="@{'/careers/details/' + ${job.id}}" th:method="get">
                         <button type="submit" class="btn btn-success" value="seeMore">See More</button>
                     </form>
