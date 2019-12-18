@@ -14,23 +14,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+                .cors()
+                .disable()
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/index", "/register", "/login", "/contacts").permitAll()
                 .antMatchers("/js/*", "/css/*", "/img/*").permitAll()
+                .antMatchers("/", "/register", "/login", "/contacts").anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .permitAll()
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/home", true)
+                .defaultSuccessUrl("/home")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/index")
-                .permitAll()
+                .logoutSuccessUrl("/")
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/unauthorized");

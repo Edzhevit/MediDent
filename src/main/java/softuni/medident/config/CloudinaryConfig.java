@@ -4,6 +4,7 @@ import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import softuni.medident.constants.CloudinaryConstants;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,9 +22,9 @@ public class CloudinaryConfig {
     @Bean
     public Cloudinary cloudinary(){
         Map<String, Object> config = new HashMap<String, Object>();
-        config.put("cloud_name", cloudName);
-        config.put("api_key", apiKey);
-        config.put("api_secret", apiSecret);
+        config.put(CloudinaryConstants.CLOUD_NAME, cloudName);
+        config.put(CloudinaryConstants.API_KEY, apiKey);
+        config.put(CloudinaryConstants.API_SECRET, apiSecret);
 
         return new Cloudinary(config);
     }

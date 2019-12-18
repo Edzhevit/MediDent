@@ -3,6 +3,9 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
     <link rel="stylesheet"
           href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
@@ -15,6 +18,7 @@
     <link rel="stylesheet" th:href="@{/css/reset-css.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <title>Dental Clinic Medident</title>
 </head>
 
 <body class="profile-page">
@@ -30,7 +34,7 @@
                 <a class="nav-link" href="/home">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/our-team">Our Team</a>
+                <a class="nav-link" href="/dentists/all">Our Team</a>
             </li>
             <li class="nav-item">
                 <div class="dropdown">
@@ -92,8 +96,8 @@
                 <div class="col-md-6 ml-auto mr-auto">
                     <div class="profile">
                         <div class="avatar">
-                            <img src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTU0NjQzOTk4OTQ4OTkyMzQy/ansel-elgort-poses-for-a-portrait-during-the-baby-driver-premiere-2017-sxsw-conference-and-festivals-on-march-11-2017-in-austin-texas-photo-by-matt-winkelmeyer_getty-imagesfor-sxsw-square.jpg"
-                                 alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                            <img th:src="${model.imageUrl}" alt="Circle Image"
+                                 class="img-raised rounded-circle img-fluid">
                         </div>
                         <div class="name">
                             <h3 class="title" th:text="${model.username}"></h3>
@@ -120,7 +124,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
                                     <i class="material-icons">favorite</i>
-                                    My History
+                                    My Appointments
                                 </a>
                             </li>
                         </ul>
@@ -130,34 +134,44 @@
             <div class="tab-content tab-space">
                 <div class="tab-pane active text-center gallery" id="studio">
                     <div class="row">
-                        <div class="col-md-3 ml-auto">
+                        <div class="col-md-6 m-auto">
                             <h4 class="title" th:text="'Email:   ' + ${model.email}"></h4>
                             <h4 class="title" th:text="'Age:   ' + ${model.age}"></h4>
                             <h4 class="title" th:text="'Gender:   ' + ${model.gender}"></h4>
                             <h4 class="title" th:text="'Phone Number:   ' + ${model.phoneNumber}"></h4>
-                        </div>
-                        <div class="col-md-3 mr-auto">
-
+                            <th:block th:if="${model.address != null}">
+                                <h4 class="title" th:text="'House Number:   ' + ${model.address.number}"></h4>
+                                <h4 class="title" th:text="'Street:   ' + ${model.address.street}"></h4>
+                                <h4 class="title" th:text="'City:   ' + ${model.address.city}"></h4>
+                                <h4 class="title" th:text="'Postcode:   ' + ${model.address.postcode}"></h4>
+                            </th:block>
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane text-center gallery" id="works">
                     <div class="row">
-                        <div class="col-md-3 ml-auto">
 
+                        <div class="col-md-6 m-auto">
+                            <a href="/edit" title="edit" class="btn btn-outline-info m-2 my-sm-0">Edit</a>
                         </div>
-                        <div class="col-md-3 mr-auto">
-
-                        </div>
+                        <th:block th:if="${model.address == null}">
+                            <div class="col-md-6 m-auto">
+                                <a href="/address" title="address" class="btn btn-outline-info m-2 my-sm-0">Add
+                                    Address</a>
+                            </div>
+                        </th:block>
                     </div>
                 </div>
                 <div class="tab-pane text-center gallery" id="favorite">
                     <div class="row">
-                        <div class="col-md-3 ml-auto">
-
-                        </div>
-                        <div class="col-md-3 mr-auto">
-
+                        <div class="col-md-6 m-auto">
+                            <th:block th:each="appointment : ${model.appointments}">
+                                <div id="job" class="col-md-3 d-flex flex-column text-center">
+                                    <h2 th:text="${appointment.reason}"></h2>
+                                    <h4 th:text="${appointment.dentistName}"></h4>
+                                    <p th:text="${appointment.treatmentType}"></p>
+                                </div>
+                            </th:block>
                         </div>
                     </div>
                 </div>
@@ -175,6 +189,6 @@
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
         integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
-        crossorigin="anonymous"></script>
-
+        crossorigin="anonymous">
+</script>
 </body>
