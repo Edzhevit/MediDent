@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body id="registerBody">
+<th:block th:include="~{fragments/user-header}"/>
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Book An
+        Appointment</label>
+        <div class="login-form">
+            <form id="signupForm" th:action="@{/appointment}" method="post">
+                <div class="sign-up-htm">
+                    <div class="group">
+                        <div class="">
+                            <label class="label" for="reason">Reason</label>
+                        </div>
+                        <select class="input" id="reason" name="reason" required>
+                            <option class="bg-info" selected>Choose...</option>
+                            <option class="bg-info" value="CheckUp">Check Up</option>
+                            <option class="bg-info" value="Xray">X Ray</option>
+                            <option class="bg-info" value="Cleaning">Cleaning</option>
+                        </select>
+                    </div>
+                    <div class="group">
+                        <div class="">
+                            <label class="label" for="dentistName">Dentist</label>
+                        </div>
+                        <select class="input" id="dentistName" name="dentistName" required>
+                            <option class="bg-info" selected>Choose...</option>
+                            <th:block th:each="dentist : ${dentists}">
+                                <option class="bg-info" value="CheckUp" th:text="${dentist.name}">[[${dentist.name}]]</option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <div class="group">
+                        <div class="">
+                            <label class="label" for="treatmentType">Treatments</label>
+                        </div>
+                        <select class="input" id="treatmentType" name="treatmentType" required>
+                            <option class="bg-info" selected>Choose...</option>
+                            <th:block th:each="treatment : ${treatments}">
+                                <option class="bg-info" value="CheckUp" th:text="${treatment.type}">[[${treatment.type}]]</option>
+                            </th:block>
+                        </select>
+                    </div>
+
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign Up">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<th:block th:include="~{fragments/footer}"/>
+<th:block th:include="~{fragments/script}"/>
+</body>
+</html>
