@@ -3,7 +3,6 @@ package softuni.medident.web.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -15,5 +14,4 @@ public class UserRegisterModel {
     private String confirmPassword;
     private String email;
     private String gender;
-//    private MultipartFile image;
 }

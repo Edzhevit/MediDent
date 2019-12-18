@@ -3,9 +3,6 @@ package softuni.medident.web.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import softuni.medident.data.models.Address;
-import softuni.medident.data.models.Dentist;
-import softuni.medident.data.models.PatientHistory;
 
 import java.util.List;
 
@@ -20,9 +17,8 @@ public class UserProfileModel {
     private Integer age;
     private String gender;
     private String phoneNumber;
-    private Address address;
-    private Dentist dentist;
-    private List<PatientHistory> patientHistories;
-//    private String imageUrl;
+    private AddressViewModel address;
+    private List<AppointmentViewModel> appointments;
+    private String imageUrl;
 
 }

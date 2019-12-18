@@ -2,6 +2,7 @@ package softuni.medident.web.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,22 +38,25 @@ public class ProductController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView getProducts(ModelAndView modelAndView){
 
-        List<ProductViewModel> products = this.productService.getAllProducts()
+        List<ProductViewDetailsModel> products = this.productService.getAllProducts()
                 .stream()
-                .map(p -> this.modelMapper.map(p, ProductViewModel.class))
+                .map(p -> this.modelMapper.map(p, ProductViewDetailsModel.class))
                 .collect(Collectors.toList());
         modelAndView.addObject("products", products);
         modelAndView.setViewName("products/all-products.html");
         return modelAndView;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/create")
     public String getCreateProductForm(){
-        return "products/create-product.html";
+        return "products/add-product.html";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public String createProduct(@ModelAttribute ProductViewModel product) throws IOException, ProductNotFoundException {
         ProductServiceModel serviceModel = this.modelMapper.map(product, ProductServiceModel.class);
@@ -62,6 +66,7 @@ public class ProductController {
     }
 
     @GetMapping("/details/{id}")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView getProductDetails(@PathVariable String id, ModelAndView modelAndView) {
         ProductServiceModel serviceModel = productService.getById(id);
         ProductViewDetailsModel viewModel = this.modelMapper.map(serviceModel, ProductViewDetailsModel.class);
@@ -71,6 +76,7 @@ public class ProductController {
     }
 
     @PostMapping("/buy/{id}")
+    @PreAuthorize("isAuthenticated()")
     public void buyProduct(@PathVariable String id, Principal principal, HttpServletResponse response) throws UserNotFoundException, ProductNotFoundException, IOException {
         String username = principal.getName();
         productService.addToUserById(id, username);
@@ -78,6 +84,7 @@ public class ProductController {
     }
 
     @GetMapping("/my")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView getMyProducts(Principal principal, ModelAndView modelAndView){
         String username = principal.getName();
 

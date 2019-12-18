@@ -30,7 +30,6 @@ public class AuthValidatorServiceTest extends ServiceTestBase {
         UserRegisterServiceModel user = new UserRegisterServiceModel (
                 null, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD,
                 Constants.DEFAULT_EMAIL, Gender.MALE,
-//                Constants.DEFAULT_IMAGE_URL,
                 new HashSet<>());
         boolean isValid = service.isValid(user);
         assertFalse(isValid);
@@ -41,7 +40,6 @@ public class AuthValidatorServiceTest extends ServiceTestBase {
         UserRegisterServiceModel user = new UserRegisterServiceModel (
                 Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD, Constants.PASSWORD_NOT_MATCH,
                 Constants.DEFAULT_EMAIL, Gender.MALE,
-//                Constants.DEFAULT_IMAGE_URL,
                 new HashSet<>());
         boolean isValid = service.isValid(user);
         assertFalse(isValid);
@@ -54,7 +52,6 @@ public class AuthValidatorServiceTest extends ServiceTestBase {
         UserRegisterServiceModel user = new UserRegisterServiceModel (
                 Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD,
                 Constants.DEFAULT_EMAIL, Gender.MALE,
-//                Constants.DEFAULT_IMAGE_URL,
                 new HashSet<>());
 
         Mockito.when(repository.existsByEmail(email))
@@ -68,7 +65,6 @@ public class AuthValidatorServiceTest extends ServiceTestBase {
         UserRegisterServiceModel user = new UserRegisterServiceModel (
                 Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD,
                 Constants.DEFAULT_EMAIL, null,
-//                Constants.DEFAULT_IMAGE_URL,
                 new HashSet<>());
         boolean isValid = service.isValid(user);
         assertTrue(isValid);

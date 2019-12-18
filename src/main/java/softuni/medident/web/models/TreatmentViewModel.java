@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class TreatmentViewModel extends BaseModel {
 
-    private BigDecimal price;
     private String type;
+    private BigDecimal price;
+    private String description;
 }

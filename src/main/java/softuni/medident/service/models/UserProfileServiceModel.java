@@ -3,16 +3,15 @@ package softuni.medident.service.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import softuni.medident.data.models.Address;
-import softuni.medident.data.models.Dentist;
-import softuni.medident.data.models.PatientHistory;
+import softuni.medident.data.models.Appointment;
+import softuni.medident.service.models.base.BaseModel;
 
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserProfileServiceModel {
+public class UserProfileServiceModel extends BaseModel {
 
     private String username;
     private String password;
@@ -20,7 +19,7 @@ public class UserProfileServiceModel {
     private Integer age;
     private String gender;
     private String phoneNumber;
-    private Address address;
-    private Dentist dentist;
-    private List<PatientHistory> patientHistories;
+    private AddressServiceModel address;
+    private String imageUrl;
+    private List<Appointment> appointments;
 }

@@ -2,6 +2,7 @@ package softuni.medident.web.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +30,7 @@ public class JobApplicationController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView getJobs(ModelAndView modelAndView){
 
         List<JobApplicationViewModel> jobs = this.jobApplicationService.getAllJobs()
@@ -40,11 +42,13 @@ public class JobApplicationController {
         return modelAndView;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/create")
     public String getCreateCareersForm(){
-        return "careers/create-job.html";
+        return "careers/add-job.html";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public String create(@ModelAttribute JobApplicationViewModel viewModel) throws JobNotFoundException {
         JobApplicationServiceModel serviceModel = this.modelMapper.map(viewModel, JobApplicationServiceModel.class);
@@ -53,6 +57,7 @@ public class JobApplicationController {
     }
 
     @GetMapping("/details/{id}")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView getJobDetails(@PathVariable String id, ModelAndView modelAndView) throws JobNotFoundException {
         JobApplicationServiceModel serviceModel = jobApplicationService.getById(id);
         JobApplicationViewModel viewModel = this.modelMapper.map(serviceModel, JobApplicationViewModel.class);
@@ -61,6 +66,7 @@ public class JobApplicationController {
         return modelAndView;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/delete/{id}")
     public String deleteJob(@PathVariable String id) throws JobNotFoundException {
         this.jobApplicationService.removeJob(id);

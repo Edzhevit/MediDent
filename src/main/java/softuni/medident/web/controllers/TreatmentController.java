@@ -2,6 +2,7 @@ package softuni.medident.web.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,6 +30,7 @@ public class TreatmentController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView getTreatments(ModelAndView modelAndView){
 
         List<TreatmentViewModel> treatments = this.treatmentService.getAllTreatments()
@@ -40,11 +42,13 @@ public class TreatmentController {
         return modelAndView;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/create")
     public String getCreateTreatmentForm(){
-        return "treatments/create-treatment.html";
+        return "treatments/add-treatment.html";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public String create(@ModelAttribute TreatmentViewModel viewModel) {
         TreatmentServiceModel serviceModel = this.modelMapper.map(viewModel, TreatmentServiceModel.class);
