@@ -10,7 +10,7 @@ public class LogoInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
-        String logoPath = "https://res.cloudinary.com/stefan-cloud/image/upload/v1568996236/iindc2ktj5k8chk7w0ue.jpg";
+        String logoPath = "https://res.cloudinary.com/edzhevit/image/upload/v1576753814/output-onlinepngtools_acrc1f.png";
 
         if (modelAndView == null) {
             modelAndView = new ModelAndView();
