@@ -104,4 +104,13 @@ public class ProductServiceImpl implements ProductService {
                     return serviceModel;
                 }).collect(Collectors.toList());
     }
+
+    @Override
+    public void removeProduct(String id) throws ProductNotFoundException {
+        Product product = this.productRepository.getById(id);
+        if (product == null){
+            throw new ProductNotFoundException(NO_SUCH_PRODUCT_MESSAGE);
+        }
+        this.productRepository.delete(product);
+    }
 }

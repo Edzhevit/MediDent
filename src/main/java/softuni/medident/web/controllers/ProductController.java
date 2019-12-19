@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import softuni.medident.exception.ProductNotFoundException;
+import softuni.medident.exception.TreatmentNotFoundException;
 import softuni.medident.exception.UserNotFoundException;
 import softuni.medident.service.models.ProductServiceModel;
 import softuni.medident.service.services.CloudinaryService;
@@ -73,6 +74,13 @@ public class ProductController {
         modelAndView.addObject("product", viewModel);
         modelAndView.setViewName(PRODUCT_DETAILS_VIEW_NAME);
         return modelAndView;
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/delete/{id}")
+    public String deleteJob(@PathVariable String id) throws ProductNotFoundException {
+        this.productService.removeProduct(id);
+        return "redirect:/products/all";
     }
 
     @PostMapping("/buy/{id}")

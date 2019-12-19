@@ -5,9 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 public class HomeController {
@@ -17,12 +15,6 @@ public class HomeController {
     public String index(){
         return "home/index.html";
     }
-
-//    @GetMapping("/home")
-//    @PreAuthorize("isAuthenticated()")
-//    public String getHome(){
-//        return "home/home.html";
-//    }
 
     @GetMapping("/home")
     public ModelAndView home(ModelAndView modelAndView, Principal principal) {

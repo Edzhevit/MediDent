@@ -64,7 +64,7 @@ public class AuthValidatorServiceTest extends ServiceTestBase {
     void isValid_whenAllIsValid_ShouldReturnTrue(){
         UserRegisterServiceModel user = new UserRegisterServiceModel (
                 Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD, Constants.DEFAULT_PASSWORD,
-                Constants.DEFAULT_EMAIL, null,
+                Constants.DEFAULT_EMAIL, Gender.MALE,
                 new HashSet<>());
         boolean isValid = service.isValid(user);
         assertTrue(isValid);

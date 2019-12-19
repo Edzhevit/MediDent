@@ -17,4 +17,6 @@ public interface ProductService {
     void addToUserById(String id, String username) throws UserNotFoundException, ProductNotFoundException;
 
     List<ProductServiceModel> getProductsForUser(String username);
+
+    void removeProduct(String id) throws ProductNotFoundException;
 }
