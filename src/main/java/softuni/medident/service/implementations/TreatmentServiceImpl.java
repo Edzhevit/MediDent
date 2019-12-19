@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softuni.medident.data.models.Treatment;
 import softuni.medident.data.repositories.TreatmentRepository;
+import softuni.medident.exception.TreatmentNotFoundException;
 import softuni.medident.service.models.TreatmentServiceModel;
 import softuni.medident.service.services.TreatmentService;
 
@@ -13,6 +14,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class TreatmentServiceImpl implements TreatmentService {
+
+    private final static String NO_SUCH_TREATMENT_MESSAGE = "There is no such treatment!";
+
 
     private final TreatmentRepository treatmentRepository;
     private final ModelMapper modelMapper;
@@ -41,4 +45,15 @@ public class TreatmentServiceImpl implements TreatmentService {
 
         return this.modelMapper.map(treatment, TreatmentServiceModel.class);
     }
+
+    @Override
+    public void removeTreatment(String id) throws TreatmentNotFoundException {
+        Treatment treatment = this.treatmentRepository.getById(id);
+        if (treatment == null){
+            throw new TreatmentNotFoundException(NO_SUCH_TREATMENT_MESSAGE);
+        }
+
+        this.treatmentRepository.delete(treatment);
+    }
+
 }

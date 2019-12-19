@@ -4,11 +4,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import softuni.medident.exception.JobNotFoundException;
+import softuni.medident.exception.TreatmentNotFoundException;
 import softuni.medident.service.models.TreatmentServiceModel;
 import softuni.medident.service.services.TreatmentService;
 import softuni.medident.web.models.TreatmentViewModel;
@@ -19,6 +18,8 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/treatments")
 public class TreatmentController {
+
+    public final static String TREATMENT_DETAILS_VIEW_NAME = "treatments/treatment-details.html";
 
     private final TreatmentService treatmentService;
     private final ModelMapper modelMapper;
@@ -53,6 +54,23 @@ public class TreatmentController {
     public String create(@ModelAttribute TreatmentViewModel viewModel) {
         TreatmentServiceModel serviceModel = this.modelMapper.map(viewModel, TreatmentServiceModel.class);
         this.treatmentService.createTreatment(serviceModel);
+        return "redirect:/treatments/all";
+    }
+
+    @GetMapping("/details/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView getTreatmentDetails(@PathVariable String id, ModelAndView modelAndView) {
+        TreatmentServiceModel serviceModel = treatmentService.getById(id);
+        TreatmentViewModel treatment = this.modelMapper.map(serviceModel, TreatmentViewModel.class);
+        modelAndView.addObject("treatment", treatment);
+        modelAndView.setViewName(TREATMENT_DETAILS_VIEW_NAME);
+        return modelAndView;
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/delete/{id}")
+    public String deleteJob(@PathVariable String id) throws TreatmentNotFoundException {
+        this.treatmentService.removeTreatment(id);
         return "redirect:/treatments/all";
     }
 }
