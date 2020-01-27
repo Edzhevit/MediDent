@@ -1,7 +1,11 @@
 # MediDent
 ## Dental Clinic Website
 
+### Index page
 ![home](https://res.cloudinary.com/edzhevit/image/upload/v1580129635/medident_xw59sd.bmp)
+
+### Home page
+![home](https://res.cloudinary.com/edzhevit/image/upload/v1580130043/medident_home_hgoqg0.png)
 
 ### General Requirements
 Your Web application should use the following technologies, frameworks and development techniques:
