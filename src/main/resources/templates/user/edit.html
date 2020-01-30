@@ -14,15 +14,31 @@
                 <div class="sign-up-htm">
                     <div class="group">
                         <label for="age" class="label">Age</label>
-                        <input id="age" type="text" class="input" name="age">
+                        <input id="age" type="text" class="input" name="age" th:value="${model.age}"/>
                     </div>
                     <div class="group">
                         <label for="phoneNumber" class="label">Phone Number</label>
-                        <input id="phoneNumber" type="text" class="input" name="phoneNumber">
+                        <input id="phoneNumber" type="text" class="input" name="phoneNumber" th:value="${model.phoneNumber}" />
                     </div>
                     <div class="group">
                         <label for="image" class="label">Image</label>
                         <input id="image" type="file" class="input" name="image"/>
+                    </div>
+                    <div class="group">
+                        <label for="number" class="label">Number</label>
+                        <input id="number" type="number" class="input" name="number" th:value="${model.address.number}"/>
+                    </div>
+                    <div class="group">
+                        <label for="street" class="label">Street</label>
+                        <input id="street" type="text" class="input" name="street"  th:value="${model.address.street}"/>
+                    </div>
+                    <div class="group">
+                        <label for="city" class="label">City</label>
+                        <input id="city" type="text" class="input" name="city"  th:value="${model.address.city}"/>
+                    </div>
+                    <div class="group">
+                        <label for="postcode" class="label">Postcode</label>
+                        <input id="postcode" type="text" class="input" name="postcode"  th:value="${model.address.postcode}"/>
                     </div>
                     <div class="group">
                         <input type="submit" class="button" value="Save">
