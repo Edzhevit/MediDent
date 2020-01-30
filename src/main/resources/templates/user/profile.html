@@ -95,11 +95,13 @@
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto">
                     <div class="profile">
-                        <div class="avatar">
-                            <img th:src="${model.imageUrl}" alt="Circle Image"
-                                 class="img-raised rounded-circle img-fluid">
-                        </div>
-                        <div class="name">
+                        <th:block th:if="${model.imageUrl != null}">
+                            <div class="avatar">
+                                <img th:src="${model.imageUrl}" alt="Circle Image"
+                                     class="img-raised rounded-circle img-fluid">
+                            </div>
+                        </th:block>
+                        <div id="username" class="name">
                             <h3 class="title" th:text="${model.username}"></h3>
                         </div>
                     </div>
@@ -136,9 +138,13 @@
                     <div class="row">
                         <div class="col-md-6 m-auto">
                             <h4 class="title" th:text="'Email:   ' + ${model.email}"></h4>
-                            <h4 class="title" th:text="'Age:   ' + ${model.age}"></h4>
+                            <th:block th:if="${model.age != null}">
+                                <h4 class="title" th:text="'Age:   ' + ${model.age}"></h4>
+                            </th:block>
                             <h4 class="title" th:text="'Gender:   ' + ${model.gender}"></h4>
-                            <h4 class="title" th:text="'Phone Number:   ' + ${model.phoneNumber}"></h4>
+                            <th:block th:if="${model.age != null}">
+                                <h4 class="title" th:text="'Phone Number:   ' + ${model.phoneNumber}"></h4>
+                            </th:block>
                             <th:block th:if="${model.address != null}">
                                 <h4 class="title" th:text="'House Number:   ' + ${model.address.number}"></h4>
                                 <h4 class="title" th:text="'Street:   ' + ${model.address.street}"></h4>
