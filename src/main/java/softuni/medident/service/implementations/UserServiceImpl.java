@@ -16,7 +16,6 @@ import softuni.medident.exception.UserNotFoundException;
 import softuni.medident.service.models.AddressServiceModel;
 import softuni.medident.service.models.UserProfileServiceModel;
 import softuni.medident.service.models.UserRegisterServiceModel;
-import softuni.medident.service.services.AppointmentService;
 import softuni.medident.service.services.UserService;
 import softuni.medident.service.services.HashService;
 import softuni.medident.service.services.AuthValidatorService;

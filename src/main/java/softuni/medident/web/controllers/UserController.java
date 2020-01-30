@@ -75,8 +75,13 @@ public class UserController extends BaseController {
 
     @GetMapping("/edit")
     @PreAuthorize("isAuthenticated()")
-    public String edit() {
-        return "user/edit.html";
+    public ModelAndView edit(ModelAndView modelAndView, Principal principal) {
+        String username = principal.getName();
+        UserProfileServiceModel serviceModel = this.userService.getProfile(username);
+        UserProfileModel viewModel = this.modelMapper.map(serviceModel, UserProfileModel.class);
+        modelAndView.addObject("model", viewModel);
+        modelAndView.setViewName("user/edit.html");
+        return modelAndView;
     }
 
     @PostMapping("/edit")
@@ -87,6 +92,12 @@ public class UserController extends BaseController {
         userProfileServiceModel.setImageUrl(this.cloudinaryService.upload(model.getImage()));
         userProfileServiceModel.setAge(model.getAge());
         userProfileServiceModel.setPhoneNumber(model.getPhoneNumber());
+        AddressServiceModel address = new AddressServiceModel();
+        address.setNumber(model.getNumber());
+        address.setStreet(model.getStreet());
+        address.setCity(model.getCity());
+        address.setPostcode(model.getPostcode());
+        userProfileServiceModel.setAddress(address);
         this.userService.editProfile(userProfileServiceModel);
 
         return redirect("/profile");
