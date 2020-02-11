@@ -17,7 +17,6 @@ public class TreatmentServiceImpl implements TreatmentService {
 
     private final static String NO_SUCH_TREATMENT_MESSAGE = "There is no such treatment!";
 
-
     private final TreatmentRepository treatmentRepository;
     private final ModelMapper modelMapper;
 
@@ -42,7 +41,6 @@ public class TreatmentServiceImpl implements TreatmentService {
     @Override
     public TreatmentServiceModel getById(String id) {
         Treatment treatment = this.treatmentRepository.getById(id);
-
         return this.modelMapper.map(treatment, TreatmentServiceModel.class);
     }
 
@@ -52,7 +50,6 @@ public class TreatmentServiceImpl implements TreatmentService {
         if (treatment == null){
             throw new TreatmentNotFoundException(NO_SUCH_TREATMENT_MESSAGE);
         }
-
         this.treatmentRepository.delete(treatment);
     }
 
