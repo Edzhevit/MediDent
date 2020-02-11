@@ -10,16 +10,20 @@
     <div id="all-jobs-container" class="container">
         <div class="row mb-4 d-flex justify-content-around">
             <th:block th:each="treatment : ${treatments}">
-                <div id="job" class="col-md-3 d-flex flex-column text-center">
-                    <h2 th:text="${treatment.type}"></h2>
-                    <h4 th:text="${treatment.price}"></h4>
-                    <form th:action="@{'/treatments/details/' + ${treatment.id}}" th:method="get">
-                        <button type="submit" class="btn btn-success" value="seeMore">See More</button>
-                    </form>
-                    <form th:action="@{'/treatments/delete/' + ${treatment.id}}" th:method="post">
-                        <button type="submit" class="btn btn-danger" value="delete">Delete</button>
-                    </form>
-
+                <div class="col-md-4 d-flex flex-column text-center">
+                    <div id="job" class="card">
+                        <div class="card-body">
+                            <h2 class="card-title" th:text="${treatment.type}"></h2>
+                            <h4 class="card-text" th:text="${treatment.price}"> lv</h4>
+                            <p class="card-text" th:text="${treatment.description}"> lv</p>
+                            <form class="card-footer" th:action="@{'/treatments/details/' + ${treatment.id}}" th:method="get">
+                                <button type="submit" class="btn btn-md btn-success" value="seeMore">More Info</button>
+                            </form>
+                            <form class="card-footer" th:action="@{'/treatments/delete/' + ${treatment.id}}" th:method="post">
+                                <button type="submit" class="btn btn-md btn-danger" value="delete">Delete</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </th:block>
         </div>

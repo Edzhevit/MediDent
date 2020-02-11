@@ -11,18 +11,23 @@
     <div id="all-jobs-container" class="container">
         <div class="row mb-4 d-flex justify-content-around">
             <th:block th:each="job : ${jobs}">
-                <div id="job" class="col-md-3 d-flex flex-column text-center">
-                    <h2 th:text="${job.name}"></h2>
-                    <h4 th:text="${job.location}"></h4>
-                    <p th:text="${job.salary} + 'lv'"></p>
-                    <p th:text="${job.description}"></p>
-                    <form th:action="@{'/careers/details/' + ${job.id}}" th:method="get">
-                        <button type="submit" class="btn btn-success" value="seeMore">See More</button>
-                    </form>
-                    <form sec:authorize="hasAuthority('ADMIN')" th:action="@{'/careers/delete/' + ${job.id}}" th:method="post">
-                        <button type="submit" class="btn btn-danger" value="delete">Delete</button>
-                    </form>
-
+                <div class="col-md-4 d-flex flex-column text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title" th:text="${job.name}"></h2>
+                            <h4 class="card-text" th:text="${job.location}"></h4>
+                            <p class="card-text" th:text="${job.salary} + 'lv'"></p>
+                            <p class="card-text" th:text="${job.description}"></p>
+                            <form class="card-footer" th:action="@{'/careers/details/' + ${job.id}}" th:method="get">
+                                <button type="submit" class="btn btn-success" value="seeMore">Apply</button>
+                            </form>
+                            <form class="card-footer" sec:authorize="hasAuthority('ADMIN')"
+                                  th:action="@{'/careers/delete/' + ${job.id}}"
+                                  th:method="post">
+                                <button type="submit" class="btn btn-danger" value="delete">Delete</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </th:block>
         </div>

@@ -9,12 +9,12 @@
 <main>
     <div id="all-jobs-container" class="container">
         <div class="row mb-4 d-flex justify-content-around">
-            <div id="job-detail" class="text-center bg-blur">
-                <h1>Treatment</h1>
+            <div class="text-center bg-blur">
                 <div class="row">
-                    <div class="col-12">
-                        <h3 class="align-middle" th:text="${treatment.price}"></h3>
+                    <div id="job" class="col-12">
                         <h3 class="align-middle" th:text="${treatment.type}"></h3>
+                        <h3 class="align-middle" th:text="${treatment.price}"></h3>
+                        <p class="align-middle" th:text="${treatment.description}"></p>
                     </div>
                 </div>
             </div>
