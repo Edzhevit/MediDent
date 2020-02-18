@@ -1,0 +1,1 @@
+web: java -war target/medident-1.0.0-SNAPSHOT.war --server.port=$PORT
