@@ -11,7 +11,7 @@
     <groupId>softuni</groupId>
     <artifactId>medident</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>medident</name>
     <description>Dental Clinic</description>
 
